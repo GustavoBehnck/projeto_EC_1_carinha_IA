@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bq3huk364skd3"]
 
+[ext_resource type="Script" uid="uid://2sc1e4r72whk" path="res://personagem.gd" id="1_0fbet"]
+
 [sub_resource type="Theme" id="Theme_qwfe7"]
 
 [node name="Control" type="Control" unique_id=1364027138]
@@ -9,32 +11,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0fbet")
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1938568225]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 491.0
-offset_right = 446.0
-offset_bottom = 607.0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 700.0
+offset_bottom = 143.0
+
+[node name="Button" type="Button" parent="." unique_id=937211169]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 4.0
+offset_right = 1139.0
+offset_bottom = 139.0
+theme = SubResource("Theme_qwfe7")
+theme_override_font_sizes/font_size = 48
+text = "FALAR!"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1016721127]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=173151817]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 28.0
-offset_right = 1079.0
-offset_bottom = 462.0
+offset_left = 15.0
+offset_top = 152.0
+offset_right = 1139.0
+offset_bottom = 635.0
 theme_override_font_sizes/normal_font_size = 48
 fit_content = true
 tab_size = 24
-
-[node name="Button" type="Button" parent="." unique_id=937211169]
-layout_mode = 0
-offset_left = 684.0
-offset_top = 496.0
-offset_right = 1035.0
-offset_bottom = 612.0
-theme = SubResource("Theme_qwfe7")
-theme_override_font_sizes/font_size = 48
-text = "FALAR!"
