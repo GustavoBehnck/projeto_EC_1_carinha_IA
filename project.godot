@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="projeto1"
 run/main_scene="uid://bq3huk364skd3"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
