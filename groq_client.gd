@@ -3,6 +3,7 @@ extends Node
 
 const API_URL = "https://api.groq.com/openai/v1/chat/completions"
 var api_key: String = ""
+var conversation_history: Array = [] # Armazena o histórico de mensagens da conversa
 
 func _init() -> void:
 	load_token()
@@ -13,10 +14,11 @@ func load_token() -> void:
 		var file = FileAccess.open(path, FileAccess.READ)
 		api_key = file.get_as_text().strip_edges()
 		file.close()
-	else:
-		print("ERRO: Arquivo .groq_token não encontrado na raiz do projeto!")
 
 func ask_groq(prompt: String) -> String:
+	# Adiciona a nova mensagem do usuário ao histórico
+	conversation_history.append({"role": "user", "content": "responda prevemente: \n" + prompt})
+
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
@@ -27,7 +29,7 @@ func ask_groq(prompt: String) -> String:
 	
 	var payload = {
 		"model": "openai/gpt-oss-20b",
-		"messages": [{"role": "user", "content": prompt}],
+		"messages": conversation_history, # Envia todo o histórico acumulado
 		"temperature": 1.0,
 		"max_completion_tokens": 1024
 	}
@@ -49,6 +51,13 @@ func ask_groq(prompt: String) -> String:
 	if response_code == 200:
 		var json = JSON.parse_string(response_text)
 		if json and json.has("choices"):
-			return json["choices"][0]["message"]["content"]
+			var resposta_ia = json["choices"][0]["message"]["content"]
+			# Adiciona a resposta da IA ao histórico para manter o contexto futuro
+			conversation_history.append({"role": "assistant", "content": resposta_ia})
+			return resposta_ia
 			
 	return "Erro " + str(response_code) + ": " + response_text
+
+# Função opcional para limpar o histórico caso queira reiniciar a conversa
+func clear_history() -> void:
+	conversation_history.clear()
