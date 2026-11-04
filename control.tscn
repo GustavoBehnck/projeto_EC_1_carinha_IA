@@ -4,6 +4,9 @@
 
 [sub_resource type="Theme" id="Theme_qwfe7"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_62e2m"]
+font_size = 120
+
 [node name="Control" type="Control" unique_id=1364027138]
 layout_mode = 3
 anchors_preset = 15
@@ -16,16 +19,16 @@ script = ExtResource("1_0fbet")
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1938568225]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 4.0
+offset_top = 961.0
 offset_right = 700.0
-offset_bottom = 143.0
+offset_bottom = 1100.0
 
 [node name="Button" type="Button" parent="." unique_id=937211169]
 layout_mode = 0
-offset_left = 712.0
-offset_top = 4.0
-offset_right = 1139.0
-offset_bottom = 139.0
+offset_left = 145.0
+offset_top = 1121.0
+offset_right = 572.0
+offset_bottom = 1256.0
 theme = SubResource("Theme_qwfe7")
 theme_override_font_sizes/font_size = 48
 text = "FALAR!"
@@ -34,10 +37,22 @@ text = "FALAR!"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=173151817]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 152.0
-offset_right = 1139.0
-offset_bottom = 635.0
+offset_left = 21.0
+offset_top = 394.0
+offset_right = 700.0
+offset_bottom = 932.0
 theme_override_font_sizes/normal_font_size = 48
 fit_content = true
 tab_size = 24
+
+[node name="FaceLabel" type="Label" parent="." unique_id=1096412346]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 37.0
+offset_right = 508.0
+offset_bottom = 362.0
+label_settings = SubResource("LabelSettings_62e2m")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+autowrap_trim_flags = 128
