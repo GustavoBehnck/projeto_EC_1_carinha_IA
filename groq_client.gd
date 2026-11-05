@@ -3,8 +3,6 @@ extends Node
 
 const CHAT_URL = "https://api.groq.com/openai/v1/chat/completions"
 const AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
-
-# Se o arquivo não for exportado no APK do Android, cole sua chave aqui como fallback:
 const FALLBACK_KEY = "" 
 
 var api_key: String = ""
@@ -18,7 +16,6 @@ func _init() -> void:
 	})
 
 func load_token() -> void:
-	# Tenta ler groq_token.txt (recomendado para Android) ou .groq_token
 	for path in ["res://groq_token.txt", "res://.groq_token"]:
 		if FileAccess.file_exists(path):
 			var file = FileAccess.open(path, FileAccess.READ)
@@ -29,16 +26,14 @@ func load_token() -> void:
 					return
 	api_key = FALLBACK_KEY
 
-# 1. ENVIA O ÁUDIO DO MICROFONE PARA O GROQ WHISPER (STT)
 func transcribe_audio(recording: AudioStreamWAV) -> String:
 	if api_key.is_empty():
-		return "ERRO: Chave da API Groq não encontrada no celular."
+		return ""
 		
 	var wav_bytes = _encode_wav_bytes(recording)
 	var boundary = "----GodotGroqBoundary" + str(Time.get_ticks_msec())
 	var body = PackedByteArray()
 	
-	# Monta o multipart/form-data exigido pela API de áudio da Groq
 	body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
 	body.append_array("Content-Disposition: form-data; name=\"model\"\r\n\r\n".to_utf8_buffer())
 	body.append_array("whisper-large-v3-turbo\r\n".to_utf8_buffer())
@@ -59,7 +54,9 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 	]
 	
 	var http_request = HTTPRequest.new()
+	http_request.timeout = 15.0 # Timeout de segurança de 15 segundos
 	add_child(http_request)
+	
 	var error = http_request.request_raw(AUDIO_URL, headers, HTTPClient.METHOD_POST, body)
 	if error != OK:
 		http_request.queue_free()
@@ -68,28 +65,20 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 	var result = await http_request.request_completed
 	http_request.queue_free()
 	
-	var response_code = result[1]
-	var response_text = result[3].get_string_from_utf8()
-	
-	if response_code == 200:
-		var json = JSON.parse_string(response_text)
+	if result[1] == 200:
+		var json = JSON.parse_string(result[3].get_string_from_utf8())
 		if json and json.has("text"):
 			return json["text"].strip_edges()
-	else:
-		print("Erro STT Groq (", response_code, "): ", response_text)
 	return ""
 
-# 2. ENVIA O TEXTO PARA O MODELO DE LINGUAGEM DO GROQ
 func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
-		return "Erro: Chave da API (.groq_token) não foi carregada no APK! Adicione *.txt ou .groq_token na aba Resources do Export."
+		return "Erro: Chave da API não configurada."
 
-	conversation_history.append({
-	"role": "user",
-	"content": "Responda usando tags de humor [FELIZ], [PENSATIVO], [MUITO_FELIZ], etc. antes de cada frase:\n" + prompt
-})
+	conversation_history.append({"role": "user", "content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt})
 
 	var http_request = HTTPRequest.new()
+	http_request.timeout = 15.0 # Timeout de segurança de 15 segundos
 	add_child(http_request)
 	
 	var headers = [
@@ -114,23 +103,18 @@ func ask_groq(prompt: String) -> String:
 	var result = await http_request.request_completed
 	http_request.queue_free()
 	
-	var response_code = result[1]
-	var body_data = result[3]
-	var response_text = body_data.get_string_from_utf8()
-	
-	if response_code == 200:
-		var json = JSON.parse_string(response_text)
+	if result[1] == 200:
+		var json = JSON.parse_string(result[3].get_string_from_utf8())
 		if json and json.has("choices"):
 			var resposta_ia = json["choices"][0]["message"]["content"]
 			conversation_history.append({"role": "assistant", "content": resposta_ia})
 			return resposta_ia
 			
-	return "Erro " + str(response_code) + ": " + response_text
+	return "Erro " + str(result[1]) + ": " + result[3].get_string_from_utf8()
 
 func clear_history() -> void:
 	conversation_history.clear()
 
-# Gera o cabeçalho WAV em memória para não precisar salvar arquivo no armazenamento do Android
 func _encode_wav_bytes(rec: AudioStreamWAV) -> PackedByteArray:
 	var pcm = rec.data
 	var channels = 2 if rec.stereo else 1
@@ -146,7 +130,7 @@ func _encode_wav_bytes(rec: AudioStreamWAV) -> PackedByteArray:
 	header.put_data("WAVE".to_ascii_buffer())
 	header.put_data("fmt ".to_ascii_buffer())
 	header.put_32(16)
-	header.put_16(1) # Formato PCM
+	header.put_16(1)
 	header.put_16(channels)
 	header.put_32(sample_rate)
 	header.put_32(byte_rate)
