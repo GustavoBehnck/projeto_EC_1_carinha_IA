@@ -3,9 +3,13 @@ extends Node
 
 const CHAT_URL = "https://api.groq.com/openai/v1/chat/completions"
 const AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
+const ELEVENLABS_URL = "https://api.elevenlabs.io/v1/text-to-speech/"
+
 const FALLBACK_KEY = "" 
 
 var api_key: String = ""
+var elevenlabs_api_key: String = "SUA_CHAVE_ELEVENLABS_AQUI" # Cole sua chave da ElevenLabs aqui
+var voice_id: String = "EXAVITQu4vr4xnSDxMaL" # ID de voz padrão (ex: Rachel ou outra de sua preferência)
 var conversation_history: Array = []
 
 func _init() -> void:
@@ -26,6 +30,7 @@ func load_token() -> void:
 					return
 	api_key = FALLBACK_KEY
 
+# Transcrição de áudio via Groq Whisper (STT)
 func transcribe_audio(recording: AudioStreamWAV) -> String:
 	if api_key.is_empty():
 		return ""
@@ -54,7 +59,7 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 	]
 	
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 15.0 # Timeout de segurança de 15 segundos
+	http_request.timeout = 15.0
 	add_child(http_request)
 	
 	var error = http_request.request_raw(AUDIO_URL, headers, HTTPClient.METHOD_POST, body)
@@ -71,6 +76,7 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 			return json["text"].strip_edges()
 	return ""
 
+# Envio de texto para o modelo de linguagem da Groq (LLM)
 func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
 		return "Erro: Chave da API não configurada."
@@ -78,7 +84,7 @@ func ask_groq(prompt: String) -> String:
 	conversation_history.append({"role": "user", "content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt})
 
 	var http_request = HTTPRequest.new()
-	http_request.timeout = 15.0 # Timeout de segurança de 15 segundos
+	http_request.timeout = 15.0
 	add_child(http_request)
 	
 	var headers = [
@@ -111,6 +117,49 @@ func ask_groq(prompt: String) -> String:
 			return resposta_ia
 			
 	return "Erro " + str(result[1]) + ": " + result[3].get_string_from_utf8()
+
+# Conversão de Texto para Áudio de Alta Qualidade via ElevenLabs (TTS)
+func text_to_speech_elevenlabs(text: String) -> AudioStreamMP3:
+	if elevenlabs_api_key.is_empty() or elevenlabs_api_key == "SUA_CHAVE_ELEVENLABS_AQUI":
+		print("Erro: Chave da ElevenLabs não configurada.")
+		return null
+		
+	var url = ELEVENLABS_URL + voice_id + "?output_format=mp3_44105_128"
+	
+	var headers = [
+		"Accept: audio/mpeg",
+		"Content-Type: application/json",
+		"xi-api-key: " + elevenlabs_api_key
+	]
+	
+	var payload = {
+		"text": text,
+		"model_id": "eleven_multilingual_v2",
+		"voice_settings": {
+			"stability": 0.5,
+			"similarity_boost": 0.75
+		}
+	}
+	
+	var http_request = HTTPRequest.new()
+	http_request.timeout = 15.0
+	add_child(http_request)
+	
+	var error = http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(payload))
+	if error != OK:
+		http_request.queue_free()
+		return null
+		
+	var result = await http_request.request_completed
+	http_request.queue_free()
+	
+	if result[1] == 200:
+		var audio_stream = AudioStreamMP3.new()
+		audio_stream.data = result[3] # Bytes brutos do MP3 retornados pela ElevenLabs
+		return audio_stream
+	else:
+		print("Erro ElevenLabs (", result[1], "): ", result[3].get_string_from_utf8())
+		return null
 
 func clear_history() -> void:
 	conversation_history.clear()

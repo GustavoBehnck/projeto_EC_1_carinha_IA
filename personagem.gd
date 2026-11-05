@@ -9,6 +9,8 @@ extends Control
 const GroqClientScript = preload("res://groq_client.gd")
 var groq = GroqClientScript.new()
 
+var player_eleven: AudioStreamPlayer
+
 var efeito_gravacao: AudioEffectRecord
 var player_mic: AudioStreamPlayer
 var gravando: bool = false
@@ -96,6 +98,9 @@ func _ready() -> void:
 		botao.text = "FALAR!"
 		if not botao.pressed.is_connected(_on_button_pressed):
 			botao.pressed.connect(_on_button_pressed)
+			
+	player_eleven = AudioStreamPlayer.new()
+	add_child(player_eleven)
 
 func _process(_delta: float) -> void:
 	var altura_teclado = DisplayServer.virtual_keyboard_get_height()
@@ -312,9 +317,12 @@ func falar_com_emocoes_dinamicas(resposta_bruta: String) -> void:
 
 func falar_simples(texto: String, emocao: String = "FELIZ") -> void:
 	mudar_rosto(emocao)
-	var dados = EMOTES.get(emocao, EMOTES["PADRAO"])
-	var tom: float = dados.get("pitch", 1.0)
-	var velocidade: float = dados.get("rate", 1.0)
 	
-	if voz_id != "":
-		DisplayServer.tts_speak(texto, voz_id, 50, tom, velocidade)
+	# Pede o áudio gerado por IA à ElevenLabs
+	var stream_audio = await groq.text_to_speech_elevenlabs(texto)
+	if stream_audio != null:
+		player_eleven.stream = stream_audio
+		player_eleven.play()
+		# Opcional: assim que o áudio terminar, volta o rosto para o padrão
+		await player_eleven.finished
+		mudar_rosto("PADRAO")
