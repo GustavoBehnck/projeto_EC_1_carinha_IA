@@ -5,21 +5,23 @@ const CHAT_URL = "https://api.groq.com/openai/v1/chat/completions"
 const AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
 const ELEVENLABS_URL = "https://api.elevenlabs.io/v1/text-to-speech/"
 
-const FALLBACK_KEY = "" 
+const FALLBACK_KEY = ""
+const FALLBACK_ELEVEN_KEY = "" # Cole sua chave da ElevenLabs aqui (ou crie res://eleven_token.txt)
 
 var api_key: String = ""
-var elevenlabs_api_key: String = "SUA_CHAVE_ELEVENLABS_AQUI" # Cole sua chave da ElevenLabs aqui
-var voice_id: String = "EXAVITQu4vr4xnSDxMaL" # ID de voz padrão (ex: Rachel ou outra de sua preferência)
+var elevenlabs_api_key: String = ""
+var voice_id: String = "pFZP5JQG7iQjIQuC4Bku" # Voz padrão (Lily - Multilingual v2)
 var conversation_history: Array = []
 
 func _init() -> void:
-	load_token()
+	load_tokens()
 	conversation_history.append({
 		"role": "system",
-		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE] ou [RAIVA]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [MUITO_FELIZ] Encontrei!"
+		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE] ou [RAIVA]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [MUITO_FELIZ] Encontrei!"
 	})
 
-func load_token() -> void:
+func load_tokens() -> void:
+	# Carrega chave da Groq
 	for path in ["res://groq_token.txt", "res://.groq_token"]:
 		if FileAccess.file_exists(path):
 			var file = FileAccess.open(path, FileAccess.READ)
@@ -27,10 +29,26 @@ func load_token() -> void:
 				api_key = file.get_as_text().strip_edges()
 				file.close()
 				if not api_key.is_empty():
-					return
-	api_key = FALLBACK_KEY
+					break
+	if api_key.is_empty():
+		api_key = FALLBACK_KEY
 
-# Transcrição de áudio via Groq Whisper (STT)
+	# Carrega chave da ElevenLabs
+	for path in ["res://eleven_token.txt", "res://.eleven_token"]:
+		if FileAccess.file_exists(path):
+			var file = FileAccess.open(path, FileAccess.READ)
+			if file:
+				elevenlabs_api_key = file.get_as_text().strip_edges()
+				file.close()
+				if not elevenlabs_api_key.is_empty():
+					break
+	if elevenlabs_api_key.is_empty():
+		elevenlabs_api_key = FALLBACK_ELEVEN_KEY
+
+func tem_elevenlabs_configurado() -> bool:
+	return not elevenlabs_api_key.is_empty() and elevenlabs_api_key != "SUA_CHAVE_ELEVENLABS_AQUI"
+
+# 1. Transcrição de áudio via Groq Whisper (STT)
 func transcribe_audio(recording: AudioStreamWAV) -> String:
 	if api_key.is_empty():
 		return ""
@@ -76,10 +94,10 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 			return json["text"].strip_edges()
 	return ""
 
-# Envio de texto para o modelo de linguagem da Groq (LLM)
+# 2. Envio de texto para o LLM da Groq
 func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
-		return "Erro: Chave da API não configurada."
+		return "Erro: Chave da API Groq não configurada."
 
 	conversation_history.append({"role": "user", "content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt})
 
@@ -118,13 +136,12 @@ func ask_groq(prompt: String) -> String:
 			
 	return "Erro " + str(result[1]) + ": " + result[3].get_string_from_utf8()
 
-# Conversão de Texto para Áudio de Alta Qualidade via ElevenLabs (TTS)
-func text_to_speech_elevenlabs(text: String) -> AudioStreamMP3:
-	if elevenlabs_api_key.is_empty() or elevenlabs_api_key == "SUA_CHAVE_ELEVENLABS_AQUI":
-		print("Erro: Chave da ElevenLabs não configurada.")
+# 3. Síntese de Voz via ElevenLabs (Retorna AudioStreamMP3 pronto para tocar)
+func text_to_speech_elevenlabs(text: String, stability: float = 0.45, style: float = 0.35) -> AudioStreamMP3:
+	if not tem_elevenlabs_configurado():
 		return null
 		
-	var url = ELEVENLABS_URL + voice_id + "?output_format=mp3_44105_128"
+	var url = ELEVENLABS_URL + voice_id + "?output_format=mp3_44100_128"
 	
 	var headers = [
 		"Accept: audio/mpeg",
@@ -136,8 +153,10 @@ func text_to_speech_elevenlabs(text: String) -> AudioStreamMP3:
 		"text": text,
 		"model_id": "eleven_multilingual_v2",
 		"voice_settings": {
-			"stability": 0.5,
-			"similarity_boost": 0.75
+			"stability": stability,
+			"similarity_boost": 0.75,
+			"style": style,
+			"use_speaker_boost": true
 		}
 	}
 	
@@ -155,16 +174,25 @@ func text_to_speech_elevenlabs(text: String) -> AudioStreamMP3:
 	
 	if result[1] == 200:
 		var audio_stream = AudioStreamMP3.new()
-		audio_stream.data = result[3] # Bytes brutos do MP3 retornados pela ElevenLabs
+		audio_stream.data = result[3]
 		return audio_stream
 	else:
-		print("Erro ElevenLabs (", result[1], "): ", result[3].get_string_from_utf8())
+		print("Aviso ElevenLabs (HTTP ", result[1], ") - usando fallback nativo: ", result[3].get_string_from_utf8())
 		return null
 
 func clear_history() -> void:
 	conversation_history.clear()
 
 func _encode_wav_bytes(rec: AudioStreamWAV) -> PackedByteArray:
+	var temp_path = "user://temp_fala.wav"
+	var err = rec.save_to_wav(temp_path)
+	if err == OK and FileAccess.file_exists(temp_path):
+		var file = FileAccess.open(temp_path, FileAccess.READ)
+		if file:
+			var wav_bytes = file.get_buffer(file.get_length())
+			file.close()
+			return wav_bytes
+			
 	var pcm = rec.data
 	var channels = 2 if rec.stereo else 1
 	var sample_rate = rec.mix_rate
