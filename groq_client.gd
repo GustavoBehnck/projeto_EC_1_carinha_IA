@@ -6,22 +6,21 @@ const AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
 const ELEVENLABS_URL = "https://api.elevenlabs.io/v1/text-to-speech/"
 
 const FALLBACK_KEY = ""
-const FALLBACK_ELEVEN_KEY = "" # Cole sua chave da ElevenLabs aqui (ou crie res://eleven_token.txt)
+const FALLBACK_ELEVEN_KEY = ""
 
 var api_key: String = ""
 var elevenlabs_api_key: String = ""
-var voice_id: String = "pFZP5JQG7iQjIQuC4Bku" # Voz padrão (Lily - Multilingual v2)
+var voice_id: String = "pFZP5JQG7iQjIQuC4Bku"
 var conversation_history: Array = []
 
 func _init() -> void:
 	load_tokens()
 	conversation_history.append({
 		"role": "system",
-		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE] ou [RAIVA]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [MUITO_FELIZ] Encontrei!"
+		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE], [RAIVA], [SURPRESO], [EMPOLGADO], [ORGULHOSO] ou [TIMIDO]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [EMPOLGADO] Encontrei!"
 	})
 
 func load_tokens() -> void:
-	# Carrega chave da Groq
 	for path in ["res://groq_token.txt", "res://.groq_token"]:
 		if FileAccess.file_exists(path):
 			var file = FileAccess.open(path, FileAccess.READ)
@@ -33,7 +32,6 @@ func load_tokens() -> void:
 	if api_key.is_empty():
 		api_key = FALLBACK_KEY
 
-	# Carrega chave da ElevenLabs
 	for path in ["res://eleven_token.txt", "res://.eleven_token"]:
 		if FileAccess.file_exists(path):
 			var file = FileAccess.open(path, FileAccess.READ)
@@ -48,7 +46,6 @@ func load_tokens() -> void:
 func tem_elevenlabs_configurado() -> bool:
 	return not elevenlabs_api_key.is_empty() and elevenlabs_api_key != "SUA_CHAVE_ELEVENLABS_AQUI"
 
-# 1. Transcrição de áudio via Groq Whisper (STT)
 func transcribe_audio(recording: AudioStreamWAV) -> String:
 	if api_key.is_empty():
 		return ""
@@ -64,6 +61,11 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 	body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
 	body.append_array("Content-Disposition: form-data; name=\"language\"\r\n\r\n".to_utf8_buffer())
 	body.append_array("pt\r\n".to_utf8_buffer())
+	
+	var termos_guia = "Univap, FEAU, Bloco 10, Bloco 6, Auditório Jair, Lahoz, Carlos Lahoz, Pillat, Valdir Pillat, Raniero, Leandro Raniero, Liu Yao Cho, Lizia, Dors, Oli Dors, Muella, Penedo, Alexandre Penedo, Denilson, Simioni, Andreza Simioni, Erika Peterson, Wippich, Julia Wippich, Heidi, Yokoyama, Nara Yokoyama, Esperidião, Helio Esperidião, Scalambrino, Tardelli, Alexandre Tardelli, Arian Ojeda, Wallyson, Caio Mascarenhas, Lorenzini, Luca Lorenzini, Andre Olimpio, Beltrame, Milton Beltrame, Ivone Regina, Gabriel Doria, Papp, Marco Papp."
+	body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
+	body.append_array("Content-Disposition: form-data; name=\"prompt\"\r\n\r\n".to_utf8_buffer())
+	body.append_array((termos_guia + "\r\n").to_utf8_buffer())
 	
 	body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
 	body.append_array("Content-Disposition: form-data; name=\"file\"; filename=\"fala.wav\"\r\n".to_utf8_buffer())
@@ -94,12 +96,14 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 			return json["text"].strip_edges()
 	return ""
 
-# 2. Envio de texto para o LLM da Groq
 func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
 		return "Erro: Chave da API Groq não configurada."
 
-	conversation_history.append({"role": "user", "content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt})
+	conversation_history.append({
+		"role": "user",
+		"content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt
+	})
 
 	var http_request = HTTPRequest.new()
 	http_request.timeout = 15.0
@@ -136,7 +140,6 @@ func ask_groq(prompt: String) -> String:
 			
 	return "Erro " + str(result[1]) + ": " + result[3].get_string_from_utf8()
 
-# 3. Síntese de Voz via ElevenLabs (Retorna AudioStreamMP3 pronto para tocar)
 func text_to_speech_elevenlabs(text: String, stability: float = 0.45, style: float = 0.35) -> AudioStreamMP3:
 	if not tem_elevenlabs_configurado():
 		return null
@@ -176,9 +179,7 @@ func text_to_speech_elevenlabs(text: String, stability: float = 0.45, style: flo
 		var audio_stream = AudioStreamMP3.new()
 		audio_stream.data = result[3]
 		return audio_stream
-	else:
-		print("Aviso ElevenLabs (HTTP ", result[1], ") - usando fallback nativo: ", result[3].get_string_from_utf8())
-		return null
+	return null
 
 func clear_history() -> void:
 	conversation_history.clear()

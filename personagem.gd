@@ -20,17 +20,26 @@ var modo_acessibilidade: bool = false
 var ultima_altura_teclado: int = -1
 var ultimo_tamanho_tela: Vector2 = Vector2.ZERO
 
-# Controle de animações (Idle, Respiração e Piscar)
+var botao_historico: Button
+var painel_historico: Panel
+var texto_historico: RichTextLabel
+var lista_historico: Array[String] = []
+
+var particulas_emocao: CPUParticles2D
+
 var emocao_atual: String = "PADRAO"
 var cor_atual: Color = Color("#FFFFFF")
 var tempo_idle: float = 0.0
 var timer_piscar: float = 0.0
 var piscando_olhos: bool = false
-var pos_y_base_rosto: float = 80.0
+var pos_y_base_rosto: float = 85.0
+var offset_y_emocao: float = 0.0
+var intensidade_tremor: float = 0.0
+var tween_rosto: Tween
 
-# Estilos visuais dos botões
 var estilo_botao_normal: StyleBoxFlat
 var estilo_botao_gravando: StyleBoxFlat
+var estilo_botao_topo: StyleBoxFlat
 var estilo_input: StyleBoxFlat
 var fundo_painel: ColorRect
 
@@ -38,21 +47,24 @@ var fila_emocoes_tts: Dictionary = {}
 var proximo_id_fala: int = 1
 var id_sessao_fala: int = 0
 
-# Dicionário com Kaomoji, Cor, Tom/Velocidade (TTS Nativo) e Stability/Style (ElevenLabs)
 const EMOTES = {
-	"PADRAO":      {"texto": "( •‿• )",   "cor": Color("#FFFFFF"), "pitch": 1.0,  "rate": 1.0,  "stability": 0.50, "style": 0.20},
-	"OUVINDO":     {"texto": "( ⊙_⊙ )",   "cor": Color("#00E5FF"), "pitch": 1.0,  "rate": 1.0,  "stability": 0.50, "style": 0.20},
-	"PENSANDO":    {"texto": "( -_ - )",  "cor": Color("#B388FF"), "pitch": 0.9,  "rate": 0.85, "stability": 0.65, "style": 0.15},
-	"ERRO":        {"texto": "( >_< )",   "cor": Color("#FF5252"), "pitch": 0.85, "rate": 0.95, "stability": 0.40, "style": 0.45},
-	"RAIVA":       {"texto": "( ╬ಠ益ಠ )", "cor": Color("#FF1744"), "pitch": 0.75, "rate": 1.25, "stability": 0.30, "style": 0.75},
-	"FELIZ":       {"texto": "( ^_^ )",   "cor": Color("#FFD600"), "pitch": 1.15, "rate": 1.1,  "stability": 0.40, "style": 0.45},
-	"MUITO_FELIZ": {"texto": "( ≧∇≦ )",   "cor": Color("#FFFF00"), "pitch": 1.3,  "rate": 1.25, "stability": 0.30, "style": 0.70},
-	"RINDO":       {"texto": "( ⌒▽⌒ )",   "cor": Color("#FFC400"), "pitch": 1.25, "rate": 1.2,  "stability": 0.30, "style": 0.65},
-	"PISCANDO":    {"texto": "( ^_~ )",   "cor": Color("#69F0AE"), "pitch": 1.1,  "rate": 1.05, "stability": 0.45, "style": 0.40},
-	"BRINCALHAO":  {"texto": "( •̀ᴗ•́ )و",  "cor": Color("#FF9100"), "pitch": 1.2,  "rate": 1.15, "stability": 0.35, "style": 0.60},
-	"PENSATIVO":   {"texto": "( ¬_¬ )",   "cor": Color("#CE93D8"), "pitch": 0.9,  "rate": 0.85, "stability": 0.65, "style": 0.15},
-	"CONFUSO":     {"texto": "( ・_・? )", "cor": Color("#FFB74D"), "pitch": 1.15, "rate": 0.9,  "stability": 0.40, "style": 0.40},
-	"TRISTE":      {"texto": "( T_T )",   "cor": Color("#448AFF"), "pitch": 0.8,  "rate": 0.75, "stability": 0.60, "style": 0.50}
+	"PADRAO":      {"texto": "( •‿• )",     "cor": Color("#FFFFFF"), "pitch": 1.0,  "rate": 1.0,  "stability": 0.50, "style": 0.20},
+	"OUVINDO":     {"texto": "( ⊙_⊙ )",     "cor": Color("#00E5FF"), "pitch": 1.0,  "rate": 1.0,  "stability": 0.50, "style": 0.20},
+	"PENSANDO":    {"texto": "( -_ - )",    "cor": Color("#B388FF"), "pitch": 0.9,  "rate": 0.85, "stability": 0.65, "style": 0.15},
+	"ERRO":        {"texto": "( >_< )",     "cor": Color("#FF5252"), "pitch": 0.85, "rate": 0.95, "stability": 0.40, "style": 0.45},
+	"RAIVA":       {"texto": "( ╬`益´ )",   "cor": Color("#FF1744"), "pitch": 0.75, "rate": 1.25, "stability": 0.30, "style": 0.80},
+	"FELIZ":       {"texto": "( ^_^ )",     "cor": Color("#FFD600"), "pitch": 1.15, "rate": 1.1,  "stability": 0.40, "style": 0.45},
+	"MUITO_FELIZ": {"texto": "( ≧▽≦ )",     "cor": Color("#FFFF00"), "pitch": 1.3,  "rate": 1.25, "stability": 0.30, "style": 0.70},
+	"RINDO":       {"texto": "( ^▽^ )",     "cor": Color("#FFC400"), "pitch": 1.25, "rate": 1.2,  "stability": 0.30, "style": 0.65},
+	"EMPOLGADO":   {"texto": "\\( ★ω★ )/",  "cor": Color("#FFEA00"), "pitch": 1.35, "rate": 1.25, "stability": 0.30, "style": 0.75},
+	"SURPRESO":    {"texto": "( 〇_〇 )",   "cor": Color("#18FFFF"), "pitch": 1.3,  "rate": 1.15, "stability": 0.35, "style": 0.60},
+	"ORGULHOSO":   {"texto": "( ˘⌣˘ )",     "cor": Color("#69F0AE"), "pitch": 1.05, "rate": 1.0,  "stability": 0.50, "style": 0.40},
+	"TIMIDO":      {"texto": "( •_•; )",    "cor": Color("#FF80AB"), "pitch": 1.1,  "rate": 0.95, "stability": 0.50, "style": 0.35},
+	"PISCANDO":    {"texto": "( ^_~ )",     "cor": Color("#69F0AE"), "pitch": 1.1,  "rate": 1.05, "stability": 0.45, "style": 0.40},
+	"BRINCALHAO":  {"texto": "( •̀ᴗ•́ )و",    "cor": Color("#FF9100"), "pitch": 1.2,  "rate": 1.15, "stability": 0.35, "style": 0.60},
+	"PENSATIVO":   {"texto": "( ¬_¬ )",     "cor": Color("#CE93D8"), "pitch": 0.9,  "rate": 0.85, "stability": 0.65, "style": 0.15},
+	"CONFUSO":     {"texto": "( ・_・? )",   "cor": Color("#FFB74D"), "pitch": 1.15, "rate": 0.9,  "stability": 0.40, "style": 0.40},
+	"TRISTE":      {"texto": "( T_T )",     "cor": Color("#448AFF"), "pitch": 0.8,  "rate": 0.75, "stability": 0.60, "style": 0.50}
 }
 
 func _ready() -> void:
@@ -74,6 +86,8 @@ func _ready() -> void:
 	face_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	face_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	
+	configurar_particulas_emocao()
+	
 	if display_resposta:
 		display_resposta.fit_content = false
 		display_resposta.clip_contents = true
@@ -94,9 +108,14 @@ func _ready() -> void:
 		botao_acessibilidade.add_theme_font_size_override("font_size", 20)
 		botao_acessibilidade.size = Vector2(210, 55)
 		
+	botao_acessibilidade.add_theme_stylebox_override("normal", estilo_botao_topo)
+	botao_acessibilidade.add_theme_stylebox_override("hover", estilo_botao_topo)
+	botao_acessibilidade.add_theme_stylebox_override("pressed", estilo_botao_topo)
+		
 	if not botao_acessibilidade.pressed.is_connected(_on_botao_acessibilidade_pressed):
 		botao_acessibilidade.pressed.connect(_on_botao_acessibilidade_pressed)
-	
+		
+	configurar_interface_historico()
 	atualizar_layout_acessibilidade()
 	mudar_rosto("PADRAO")
 	
@@ -148,16 +167,84 @@ func configurar_tema_visual() -> void:
 	estilo_botao_gravando.shadow_color = Color(1, 0.1, 0.2, 0.4)
 	estilo_botao_gravando.shadow_size = 12
 	
+	estilo_botao_topo = StyleBoxFlat.new()
+	estilo_botao_topo.bg_color = Color("#1E2433")
+	estilo_botao_topo.set_corner_radius_all(14)
+	
 	estilo_input = StyleBoxFlat.new()
 	estilo_input.bg_color = Color("#1E2433")
-	estilo_input.border_color = Color("#3D5AFE")
-	estilo_input.set_border_width_all(2)
 	estilo_input.set_corner_radius_all(16)
 	estilo_input.content_margin_left = 18
 	estilo_input.content_margin_right = 18
 	if input_estudante:
 		input_estudante.add_theme_stylebox_override("normal", estilo_input)
 		input_estudante.add_theme_stylebox_override("focus", estilo_input)
+
+func configurar_particulas_emocao() -> void:
+	particulas_emocao = CPUParticles2D.new()
+	particulas_emocao.emitting = false
+	particulas_emocao.amount = 35
+	particulas_emocao.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	particulas_emocao.emission_rect_extents = Vector2(140, 40)
+	add_child(particulas_emocao)
+
+func configurar_interface_historico() -> void:
+	botao_historico = Button.new()
+	botao_historico.name = "BotaoHistorico"
+	botao_historico.text = "📜 Histórico"
+	botao_historico.size = Vector2(180, 55)
+	botao_historico.position = Vector2(20, 20)
+	botao_historico.add_theme_font_size_override("font_size", 20)
+	botao_historico.add_theme_stylebox_override("normal", estilo_botao_topo)
+	botao_historico.add_theme_stylebox_override("hover", estilo_botao_topo)
+	botao_historico.add_theme_stylebox_override("pressed", estilo_botao_topo)
+	botao_historico.pressed.connect(_on_botao_historico_pressed)
+	add_child(botao_historico)
+	
+	painel_historico = Panel.new()
+	painel_historico.visible = false
+	var estilo_painel = StyleBoxFlat.new()
+	estilo_painel.bg_color = Color(0.08, 0.1, 0.15, 0.97)
+	estilo_painel.set_corner_radius_all(20)
+	painel_historico.add_theme_stylebox_override("panel", estilo_painel)
+	add_child(painel_historico)
+	
+	var titulo = Label.new()
+	titulo.text = "Histórico de Interações"
+	titulo.position = Vector2(25, 18)
+	titulo.add_theme_font_size_override("font_size", 26)
+	painel_historico.add_child(titulo)
+	
+	var btn_fechar = Button.new()
+	btn_fechar.name = "BtnFechar"
+	btn_fechar.text = "✖ Fechar"
+	btn_fechar.size = Vector2(130, 48)
+	btn_fechar.add_theme_font_size_override("font_size", 20)
+	btn_fechar.add_theme_stylebox_override("normal", estilo_botao_gravando)
+	btn_fechar.add_theme_stylebox_override("hover", estilo_botao_gravando)
+	btn_fechar.pressed.connect(func(): painel_historico.visible = false)
+	painel_historico.add_child(btn_fechar)
+	
+	texto_historico = RichTextLabel.new()
+	texto_historico.name = "TextoHistorico"
+	texto_historico.bbcode_enabled = true
+	texto_historico.scroll_active = true
+	texto_historico.scroll_following = true
+	texto_historico.add_theme_font_size_override("normal_font_size", 24)
+	texto_historico.add_theme_font_size_override("bold_font_size", 24)
+	texto_historico.text = "Nenhuma interação registrada ainda."
+	painel_historico.add_child(texto_historico)
+
+func _on_botao_historico_pressed() -> void:
+	painel_historico.visible = not painel_historico.visible
+	if painel_historico.visible:
+		painel_historico.move_to_front()
+
+func registrar_no_historico(pergunta: String, resposta: String) -> void:
+	var item = "[color=#00E5FF][b]Você:[/b][/color] " + pergunta + "\n[color=#FFD600][b]Assistente:[/b][/color] " + resposta
+	lista_historico.append(item)
+	if texto_historico:
+		texto_historico.text = "\n\n────────────────────\n\n".join(lista_historico)
 
 func _process(delta: float) -> void:
 	var altura_teclado = DisplayServer.virtual_keyboard_get_height()
@@ -170,7 +257,13 @@ func _process(delta: float) -> void:
 		
 	tempo_idle += delta
 	if face_label:
-		face_label.position.y = pos_y_base_rosto + sin(tempo_idle * 2.5) * 8.0
+		var tremor_x = randf_range(-intensidade_tremor, intensidade_tremor)
+		var tremor_y = randf_range(-intensidade_tremor, intensidade_tremor)
+		face_label.position.x = tremor_x
+		face_label.position.y = pos_y_base_rosto + offset_y_emocao + sin(tempo_idle * 2.5) * 8.0 + tremor_y
+		
+		if particulas_emocao:
+			particulas_emocao.position = face_label.position + (face_label.size / 2.0)
 		
 	if emocao_atual == "PADRAO" and not gravando:
 		timer_piscar += delta
@@ -199,20 +292,113 @@ func mudar_rosto(emocao: String) -> void:
 	emocao_atual = emocao
 	piscando_olhos = false
 	timer_piscar = 0.0
+	intensidade_tremor = 0.0
+	offset_y_emocao = 0.0
 	
+	if particulas_emocao:
+		particulas_emocao.emitting = false
+	if tween_rosto and tween_rosto.is_valid():
+		tween_rosto.kill()
+		
 	var dados = EMOTES.get(emocao, EMOTES["PADRAO"])
-	face_label.rotation_degrees = 0.0
 	face_label.text = dados["texto"]
-	
 	var cor_alvo: Color = dados["cor"]
 	
 	face_label.pivot_offset = face_label.size / 2.0
-	face_label.scale = Vector2(0.82, 0.82)
-	
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(face_label, "scale", Vector2(1.0, 1.0), 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_method(_aplicar_cor_rosto, cor_atual, cor_alvo, 0.25)
+	tween_rosto = create_tween().set_parallel(true)
+	tween_rosto.tween_method(_aplicar_cor_rosto, cor_atual, cor_alvo, 0.25)
 	cor_atual = cor_alvo
+	
+	match emocao:
+		"FELIZ", "MUITO_FELIZ", "RINDO", "EMPOLGADO":
+			var escala_max = Vector2(1.25, 1.25) if emocao != "FELIZ" else Vector2(1.14, 1.14)
+			face_label.scale = Vector2(0.8, 0.8)
+			tween_rosto.tween_property(face_label, "scale", escala_max, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+			tween_rosto.tween_property(face_label, "rotation_degrees", 0.0, 0.2)
+			
+			var tween_pulo = create_tween().set_loops(3)
+			tween_pulo.tween_property(self, "offset_y_emocao", -28.0, 0.14).set_trans(Tween.TRANS_SINE)
+			tween_pulo.tween_property(self, "offset_y_emocao", 0.0, 0.14).set_trans(Tween.TRANS_SINE)
+			
+			if emocao != "FELIZ" and particulas_emocao:
+				_ativar_particulas("ALEGRIA")
+				
+		"TRISTE":
+			tween_rosto.tween_property(face_label, "scale", Vector2(0.72, 0.72), 0.5).set_trans(Tween.TRANS_SINE)
+			tween_rosto.tween_property(face_label, "rotation_degrees", -6.0, 0.5)
+			tween_rosto.tween_property(self, "offset_y_emocao", 32.0, 0.5)
+			if particulas_emocao:
+				_ativar_particulas("CHORO")
+				
+		"RAIVA":
+			intensidade_tremor = 9.0
+			face_label.scale = Vector2(0.9, 0.9)
+			tween_rosto.tween_property(face_label, "scale", Vector2(1.22, 1.22), 0.2).set_trans(Tween.TRANS_BACK)
+			tween_rosto.tween_property(face_label, "rotation_degrees", 0.0, 0.1)
+			if particulas_emocao:
+				_ativar_particulas("FOGO")
+				
+		"CONFUSO", "PENSATIVO", "TIMIDO":
+			var angulo = 12.0 if emocao == "CONFUSO" else -8.0
+			tween_rosto.tween_property(face_label, "scale", Vector2(0.95, 0.95), 0.25)
+			tween_rosto.tween_property(face_label, "rotation_degrees", angulo, 0.3).set_trans(Tween.TRANS_BACK)
+			
+		"SURPRESO":
+			face_label.scale = Vector2(0.5, 0.5)
+			tween_rosto.tween_property(face_label, "scale", Vector2(1.28, 1.28), 0.22).set_trans(Tween.TRANS_ELASTIC)
+			tween_rosto.tween_property(face_label, "rotation_degrees", 0.0, 0.15)
+			
+		_:
+			face_label.scale = Vector2(0.88, 0.88)
+			tween_rosto.tween_property(face_label, "scale", Vector2(1.0, 1.0), 0.25).set_trans(Tween.TRANS_BACK)
+			tween_rosto.tween_property(face_label, "rotation_degrees", 0.0, 0.2)
+
+func _ativar_particulas(tipo: String) -> void:
+	if tipo == "FOGO":
+		particulas_emocao.amount = 45
+		particulas_emocao.lifetime = 0.85
+		particulas_emocao.direction = Vector2(0, -1)
+		particulas_emocao.spread = 35.0
+		particulas_emocao.gravity = Vector2(0, -260)
+		particulas_emocao.initial_velocity_min = 90.0
+		particulas_emocao.initial_velocity_max = 200.0
+		particulas_emocao.scale_amount_min = 12.0
+		particulas_emocao.scale_amount_max = 26.0
+		var grad = Gradient.new()
+		grad.set_color(0, Color("#FF1744"))
+		grad.add_point(0.5, Color("#FF9100"))
+		grad.set_color(1, Color(1.0, 0.9, 0.0, 0.0))
+		particulas_emocao.color_ramp = grad
+	elif tipo == "CHORO":
+		particulas_emocao.amount = 18
+		particulas_emocao.lifetime = 1.0
+		particulas_emocao.direction = Vector2(0, 1)
+		particulas_emocao.spread = 20.0
+		particulas_emocao.gravity = Vector2(0, 320)
+		particulas_emocao.initial_velocity_min = 40.0
+		particulas_emocao.initial_velocity_max = 90.0
+		particulas_emocao.scale_amount_min = 7.0
+		particulas_emocao.scale_amount_max = 12.0
+		var grad = Gradient.new()
+		grad.set_color(0, Color("#00E5FF"))
+		grad.set_color(1, Color(0.2, 0.5, 1.0, 0.0))
+		particulas_emocao.color_ramp = grad
+	elif tipo == "ALEGRIA":
+		particulas_emocao.amount = 30
+		particulas_emocao.lifetime = 0.9
+		particulas_emocao.direction = Vector2(0, -1)
+		particulas_emocao.spread = 180.0
+		particulas_emocao.gravity = Vector2(0, 60)
+		particulas_emocao.initial_velocity_min = 100.0
+		particulas_emocao.initial_velocity_max = 220.0
+		particulas_emocao.scale_amount_min = 8.0
+		particulas_emocao.scale_amount_max = 16.0
+		var grad = Gradient.new()
+		grad.set_color(0, Color("#FFFF00"))
+		grad.set_color(1, Color(1.0, 0.8, 0.0, 0.0))
+		particulas_emocao.color_ramp = grad
+		
+	particulas_emocao.emitting = true
 
 func _aplicar_cor_rosto(c: Color) -> void:
 	if face_label.label_settings != null:
@@ -249,17 +435,36 @@ func atualizar_layout_acessibilidade() -> void:
 	input_estudante.size = Vector2(largura_tela - (margem_x * 2.0), altura_input)
 	input_estudante.position = Vector2(margem_x, botao.position.y - altura_input - 20.0)
 	
-	botao_acessibilidade.position = Vector2(largura_tela - 230.0, 20.0)
-	botao_acessibilidade.move_to_front()
+	if botao_historico:
+		botao_historico.size = Vector2(180, 55)
+		botao_historico.position = Vector2(20.0, 20.0)
+		botao_historico.move_to_front()
+		
+	if botao_acessibilidade:
+		botao_acessibilidade.size = Vector2(210, 55)
+		botao_acessibilidade.position = Vector2(largura_tela - 230.0, 20.0)
+		botao_acessibilidade.move_to_front()
+	
+	if painel_historico:
+		painel_historico.position = Vector2(25.0, 90.0)
+		painel_historico.size = Vector2(largura_tela - 50.0, altura_tela - 130.0)
+		var btn_fechar = painel_historico.get_node_or_null("BtnFechar")
+		if btn_fechar:
+			btn_fechar.position = Vector2(painel_historico.size.x - 150.0, 14.0)
+		if texto_historico:
+			texto_historico.position = Vector2(25.0, 75.0)
+			texto_historico.size = Vector2(painel_historico.size.x - 50.0, painel_historico.size.y - 95.0)
+		if painel_historico.visible:
+			painel_historico.move_to_front()
 	
 	display_resposta.visible = modo_acessibilidade
-	var tamanho_fonte = 80 if modo_acessibilidade else 115
+	var tamanho_fonte = 80 if modo_acessibilidade else 110
 	var limite_acima_input = input_estudante.position.y - 20.0
-	pos_y_base_rosto = 80.0
+	pos_y_base_rosto = 85.0
 	
 	if modo_acessibilidade:
 		botao_acessibilidade.text = "Ocultar Texto"
-		var altura_rosto = maxf(140.0, (limite_acima_input - 80.0) * 0.32)
+		var altura_rosto = maxf(140.0, (limite_acima_input - pos_y_base_rosto) * 0.32)
 		face_label.position = Vector2(0, pos_y_base_rosto)
 		face_label.size = Vector2(largura_tela, altura_rosto)
 		
@@ -334,15 +539,15 @@ func _on_button_pressed() -> void:
 		efeito_gravacao.set_recording_active(true)
 		mudar_rosto("OUVINDO")
 		
-		botao.text = "PARAR E ENVIAR"
+		botao.text = "⏹ PARAR E ENVIAR"
 		botao.add_theme_stylebox_override("normal", estilo_botao_gravando)
 		botao.add_theme_stylebox_override("hover", estilo_botao_gravando)
-		display_resposta.text = "Ouvindo... Fale agora e toque no botão para enviar."
+		display_resposta.text = "🎤 Ouvindo... Fale agora e toque no botão para enviar."
 	else:
 		gravando = false
 		efeito_gravacao.set_recording_active(false)
 		botao.scale = Vector2(1.0, 1.0)
-		botao.text = "FALAR!"
+		botao.text = "🎤 FALAR!"
 		botao.add_theme_stylebox_override("normal", estilo_botao_normal)
 		botao.add_theme_stylebox_override("hover", estilo_botao_normal)
 		
@@ -399,6 +604,7 @@ func processar_pergunta(pergunta: String) -> void:
 		var texto_limpo_tela = regex_limpeza.sub(resposta_bruta, "", true).strip_edges()
 		
 		display_resposta.text = "Você: " + pergunta + "\n\nAssistente: " + texto_limpo_tela
+		registrar_no_historico(pergunta, texto_limpo_tela)
 		falar_com_emocoes_dinamicas(resposta_bruta)
 		
 	botao.disabled = false
