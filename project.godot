@@ -10,15 +10,22 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="projeto1"
 run/main_scene="uid://bq3huk364skd3"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/enable_input=true
+
 [display]
 
+window/size/viewport_width=720
+window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [editor]
 
