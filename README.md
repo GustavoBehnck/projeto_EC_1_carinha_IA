@@ -19,4 +19,4 @@ O **Assistente Virtual Acadêmico (AVA)** é uma aplicação móvel interativa p
 5. Exporte ou execute o projeto para **Android** no Godot (com Android Build Template / SDK configurados e permissões de microfone habilitadas) em um dispositivo físico ou emulador.
 
 ## 🔗 Repositório
-[link do Git]
+https://github.com/GustavoBehnck/projeto_EC_1_AVA
