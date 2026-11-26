@@ -16,13 +16,12 @@ var conversation_history: Array = []
 const SYSTEM_PROMPT = "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE], [RAIVA], [SURPRESO], [EMPOLGADO], [ORGULHOSO] ou [TIMIDO]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [EMPOLGADO] Encontrei!"
 
 var _aulas_db: Array = [] # Cada item terá {"tags": Array[String], "info": String}
+const AULAS_JSON_PATH = "res://dados_univap.json"
 
 func _init() -> void:
 	load_tokens()
-	conversation_history.append({
-		"role": "system",
-		"content": SYSTEM_PROMPT
-	})
+	_reset_system_prompt()
+	carregar_aulas_json(AULAS_JSON_PATH)
 
 const _MAPA_ACENTOS := {
 	"á": "a", "à": "a", "â": "a", "ã": "a", "ä": "a",
@@ -60,7 +59,7 @@ func _extrair_tokens(texto_norm: String) -> Array[String]:
 			tokens.append(limpa)
 	return tokens
 
-func carregar_aulas_json(caminho: String = "res://dados_univap.json") -> void:
+func carregar_aulas_json(caminho: String = AULAS_JSON_PATH) -> void:
 	_aulas_db.clear()
 	if not FileAccess.file_exists(caminho):
 		push_warning("Arquivo de aulas não encontrado: " + caminho)
@@ -328,9 +327,6 @@ func text_to_speech_elevenlabs(text: String, stability: float = 0.45, style: flo
 		audio_stream.data = result[3]
 		return audio_stream
 	return null
-
-func clear_history() -> void:
-	conversation_history.clear()
 
 func _encode_wav_bytes(rec: AudioStreamWAV) -> PackedByteArray:
 	var temp_path = "user://temp_fala.wav"
