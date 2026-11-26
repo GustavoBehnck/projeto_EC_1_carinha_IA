@@ -13,13 +13,15 @@ var elevenlabs_api_key: String = ""
 var voice_id: String = "pFZP5JQG7iQjIQuC4Bku"
 var conversation_history: Array = []
 
+const SYSTEM_PROMPT = "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE], [RAIVA], [SURPRESO], [EMPOLGADO], [ORGULHOSO] ou [TIMIDO]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [EMPOLGADO] Encontrei!"
+
 var _aulas_db: Array = [] # Cada item terá {"tags": Array[String], "info": String}
 
 func _init() -> void:
 	load_tokens()
 	conversation_history.append({
 		"role": "system",
-		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE], [RAIVA], [SURPRESO], [EMPOLGADO], [ORGULHOSO] ou [TIMIDO]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [EMPOLGADO] Encontrei!"
+		"content": SYSTEM_PROMPT
 	})
 
 const _MAPA_ACENTOS := {
@@ -225,6 +227,13 @@ func transcribe_audio(recording: AudioStreamWAV) -> String:
 		if json and json.has("text"):
 			return json["text"].strip_edges()
 	return ""
+
+func _reset_system_prompt() -> void:
+	conversation_history.clear()
+	conversation_history.append({
+		"role": "system",
+		"content": SYSTEM_PROMPT
+	})
 
 func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
