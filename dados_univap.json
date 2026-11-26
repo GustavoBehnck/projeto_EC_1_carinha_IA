@@ -1,0 +1,238 @@
+[
+	{
+		"tags": ["wagner", "clementino", "wagner clementino", "wagner dos santos clementino de jesus", "internet das coisas", "iot", "estruturas de dados", "algoritmos e estruturas de dados", "k520270", "k520289", "ecomp-8una"],
+		"info": "Prof. Wagner dos Santos Clementino de Jesus: 1) Internet das Coisas (K520270, Turma EComp-8UNA - Eng. Computação Noturno): Terça-feira, 19:00-20:40, Bloco 10 - Sala 3.10. 2) Algoritmos e Estruturas de Dados I (K520289, Turma EComp-8UNA - Eng. Computação Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.10."
+	},
+	{
+		"tags": ["liu", "yao", "cho", "liu yao cho", "quimica analitica", "quimica inorganica experimental", "quimica experimental", "k520186", "y520462", "a520105", "equi-6una", "equi-10una", "feau-2uma"],
+		"info": "Prof. Liu Yao Cho: 1) Química Analítica Quantitativa (K520186, EQui-6UNA - Eng. Química Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.07. 2) Química Inorgânica Experimental (Y520462, EQui-10UNA - Eng. Química Noturno): Sábado, 08:00-11:40, Bloco 6 - Sala 1.10. 3) Química Experimental (A520105, FEAU-2UMA - Eng. Computação Matutino): Terça-feira, 08:00-11:40, Auditório Jair - Bloco 10."
+	},
+	{
+		"tags": ["manoel", "otelino", "peixoto", "manoel otelino", "cadeia de suprimentos", "gestao da cadeia de suprimentos", "k520060", "eprod-8una"],
+		"info": "Prof. Manoel Otelino da Cunha Peixoto: Gestão da Cadeia de Suprimentos (K520060, Turma EProd-8UNA - Eng. Produção Noturno): Quarta-feira, 19:00-22:40, Laboratório de Informática I - Bloco 10."
+	},
+	{
+		"tags": ["maria regina", "aquino", "maria regina de aquino silva", "analise ambiental", "k520242", "arq-10uma"],
+		"info": "Profa. Maria Regina de Aquino Silva: Análise Ambiental (K520242, Turma Arq-10UMA - Arquitetura e Urbanismo Matutino): Terça-feira, 08:00-11:40, Bloco 10 - Sala 2.10."
+	},
+	{
+		"tags": ["paulo roxo", "barja", "paulo barja", "paulo roxo barja", "ciencias exatas aplicadas", "fisica geral ii", "fisica 2", "a520012", "z140337", "arq-2una", "arq-2uma", "bqui-4una"],
+		"info": "Prof. Paulo Roxo Barja: 1) Ciências Exatas Aplicadas à Arquitetura e Urbanismo (A520012, Arq-2UMA Matutino): Segunda-feira, 08:00-11:40, Bloco 10 - Sala 1.12. 2) Ciências Exatas Aplicadas à Arquitetura e Urbanismo (A520012, Arq-2UNA Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 2.12. 3) Física Geral II (Z140337, BQui-4UNA - Química Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 2.02."
+	},
+	{
+		"tags": ["fabio", "fabio de almeida", "tecnicas retrospectivas", "projeto digital", "projeto digital de arquitetura", "k520225", "k520241", "arq-6uma", "arq-6una", "arq-10uma", "arq-10una"],
+		"info": "Prof. Fabio de Almeida: 1) Técnicas Retrospectivas I (K520225, Arq-6UMA Matutino): Quinta-feira, 08:00-09:40, Bloco 10 - Sala 2.02. 2) Técnicas Retrospectivas I (K520225, Arq-6UNA Noturno): Quinta-feira, 19:00-20:40, Bloco 10 - Sala 2.14. 3) Projeto Digital de Arquitetura (K520241, Arq-10UMA Matutino): Quarta-feira, 08:00-09:40, Bloco 10 - Sala 2.10. 4) Projeto Digital de Arquitetura (K520241, Arq-10UNA Noturno): Segunda-feira, 19:00-20:40, Bloco 6 - Sala 2.09."
+	},
+	{
+		"tags": ["valdir", "pillat", "valdir gil pillat", "metodos numericos", "computacao grafica", "algoritmos e programacao", "k520034", "k520298", "a520145", "feau-4uma", "feau-4una", "feau-4unb", "ecomp-10una", "feau-2una"],
+		"info": "Prof. Valdir Gil Pillat: 1) Métodos Numéricos (K520034, FEAU-4UMA - Eng. Química Matutino): Quarta-feira, 08:00-09:40, Laboratório de Química Térreo - Bloco 10. 2) Métodos Numéricos (K520034, FEAU-4UNA - Eng. Computação Noturno): Sexta-feira, 19:00-20:40, Bloco 10 - Sala 1.10. 3) Métodos Numéricos (K520034, FEAU-4UNB - Eng. Civil Noturno): Sexta-feira, 21:00-22:40, Bloco 10 - Sala 1.11. 4) Computação Gráfica (K520298, EComp-10UNA - Eng. Computação Noturno): Quinta-feira, 19:00-20:40, Bloco 10 - Sala 3.11. 5) Algoritmos e Programação (A520145, FEAU-2UNA - Eng. Química Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 1.01."
+	},
+	{
+		"tags": ["alexandre soares", "alexandre soares de oliveira", "fisica geral i", "fisica 1", "fisica experimental i", "a520103", "a520104", "feau-2uma", "feau-2una", "feau-2unb"],
+		"info": "Prof. Alexandre Soares de Oliveira: 1) Física Geral I (A520103, FEAU-2UMA - Eng. Computação Matutino): Quinta-feira, 08:00-09:40, Auditório Jair - Bloco 10. 2) Física Experimental I (A520104, FEAU-2UMA Matutino): Quinta-feira, 10:00-11:40, Auditório Jair - Bloco 10. 3) Física Experimental I (A520104, FEAU-2UNA - Eng. Química Noturno): Quinta-feira, 19:00-20:40, Bloco 10 - Sala 1.01. 4) Física Geral I (A520103, FEAU-2UNA Noturno): Quinta-feira, 21:00-22:40, Bloco 10 - Sala 1.01. 5) Física Experimental I (A520104, FEAU-2UNB - Eng. Aeronáutica Noturno): Segunda-feira, 19:00-20:40, Bloco 10 - Sala 1.02. 6) Física Geral I (A520103, FEAU-2UNB Noturno): Segunda-feira, 21:00-22:40, Bloco 10 - Sala 1.02."
+	},
+	{
+		"tags": ["lizia", "acosta", "lizia oliveira acosta dias", "sistemas dinamicos aeroespaciais", "dinamica de voo", "mecanica celeste", "dinamica orbital", "modelagem analise e simulacao", "k520140", "k520142", "k520145", "k520197", "eaero-8una", "equi-8una"],
+		"info": "Profa. Lizia Oliveira Acosta Dias: 1) Controle de Sistemas Dinâmicos Aeroespaciais II (K520140, EAero-8UNA - Eng. Aeronáutica Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.01. 2) Dinâmica de Voo (K520142, EAero-8UNA): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.01. 3) Mecânica Celeste e Dinâmica Orbital (K520145, EAero-8UNA): Quarta-feira, 19:00-20:40, Bloco 10 - Sala 3.01. 4) Modelagem, Análise e Simulação de Sistemas (K520197, EQui-8UNA - Eng. Química Noturno): Quarta-feira, 21:00-22:40, Bloco 6 - Sala 1.09."
+	},
+	{
+		"tags": ["alan", "prestes", "alan prestes", "termodinamica aplicada", "topicos especiais em engenharia mecanica", "y520516", "k520395", "emec-8una", "emec-10una"],
+		"info": "Prof. Alan Prestes: 1) Termodinâmica Aplicada (Y520516, EMec-8UNA - Eng. Mecânica Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 1.05. 2) Tópicos Especiais em Engenharia Mecânica (K520395, EMec-10UNA - Eng. Mecânica Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 1.06."
+	},
+	{
+		"tags": ["guido", "guido santos", "guido santos de almeida junior", "estruturas metalicas", "madeira", "pontes", "k520106", "k520115", "arq-8uma", "eciv-8una", "eciv-10una"],
+		"info": "Prof. Guido Santos de Almeida Junior: 1) Estruturas Metálicas e de Madeira (K520106, Arq-8UMA - Arquitetura Matutino): Terça-feira, 08:00-11:40, Bloco 10 - Sala 2.09. 2) Estruturas Metálicas e de Madeira (K520106, ECiv-8UNA - Eng. Civil Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 3.06. 3) Pontes (K520115, ECiv-10UNA - Eng. Civil Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 3.07."
+	},
+	{
+		"tags": ["leandro", "raniero", "leandro jose raniero", "calculo diferencial e integral i", "calculo i", "calculo 1", "a520016", "feau-2uma", "feau-2una", "feau-2unb"],
+		"info": "Prof. Leandro Jose Raniero: 1) Cálculo Diferencial e Integral I (A520016, FEAU-2UMA - Eng. Computação Matutino): Segunda-feira, 08:00-11:40, Auditório Jair - Bloco 10. 2) Cálculo Diferencial e Integral I (A520016, FEAU-2UNA - Eng. Química Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 1.01. 3) Cálculo Diferencial e Integral I (A520016, FEAU-2UNB - Eng. Aeronáutica Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 1.02."
+	},
+	{
+		"tags": ["oli", "dors", "oli luiz dors junior", "resistencia dos materiais", "k520036", "feau-4uma", "feau-4una", "feau-4unb"],
+		"info": "Prof. Oli Luiz Dors Junior: 1) Resistência dos Materiais (K520036, FEAU-4UMA - Eng. Química Matutino): Terça-feira, 08:00-11:40, Laboratório de Química Térreo - Bloco 10. 2) Resistência dos Materiais (K520036, FEAU-4UNA - Eng. Computação Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 1.10. 3) Resistência dos Materiais (K520036, FEAU-4UNB - Eng. Civil Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 1.11."
+	},
+	{
+		"tags": ["marcio", "muella", "marcio tadeu", "marcio tadeu de assis honorato muella", "sistemas digitais ii", "circuitos eletricos avancados", "eletronica avancada", "topicos especiais em engenharia", "k520249", "k520250", "k520316", "k520394", "eeletr-6una", "eeletr-8una", "eeletr-10una"],
+		"info": "Prof. Marcio Tadeu de Assis Honorato Muella: 1) Sistemas Digitais II (K520249, EEletr-6UNA - Eng. Elétrica Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 0.02. 2) Circuitos Elétricos Avançados (K520250, EEletr-6UNA): Terça-feira, 21:00-22:40, Bloco 6 - Sala 0.02. 3) Eletrônica Avançada (K520316, EEletr-8UNA): Sexta-feira, 19:00-20:40, Bloco 6 - Sala 1.01. 4) Tópicos Especiais em Engenharia (K520394, EEletr-10UNA): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.02."
+	},
+	{
+		"tags": ["alexandre penedo", "penedo", "alexandre penedo barbosa de melo", "laboratorio de experimentacao e criacao", "k520214", "arq-4uma", "arq-4una"],
+		"info": "Prof. Alexandre Penedo Barbosa de Melo: 1) Laboratório de Experimentação e Criação (K520214, Arq-4UMA - Arquitetura Matutino): Quarta-feira, 08:00-11:40, Bloco 10 - Sala 2.01. 2) Laboratório de Experimentação e Criação (K520214, Arq-4UNA - Arquitetura Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 2.13."
+	},
+	{
+		"tags": ["paulo eduardo", "paulo eduardo de oliveira costa", "planejamento urbano e regional ii", "planejamento urbano e regional iv", "k520213", "k520223", "arq-4uma", "arq-4una", "arq-6uma", "arq-6una"],
+		"info": "Prof. Paulo Eduardo de Oliveira Costa: 1) Planejamento Urbano e Regional II (K520213, Arq-4UMA Matutino): Quinta-feira, 08:00-09:40, Bloco 10 - Sala 2.01. 2) Planejamento Urbano e Regional II (K520213, Arq-4UNA Noturno): Quinta-feira, 21:00-22:40, Bloco 10 - Sala 2.13. 3) Planejamento Urbano e Regional IV (K520223, Arq-6UMA Matutino): Terça-feira, 08:00-09:40, Bloco 10 - Sala 2.02. 4) Planejamento Urbano e Regional IV (K520223, Arq-6UNA Noturno): Terça-feira, 19:00-20:40, Bloco 10 - Sala 2.14."
+	},
+	{
+		"tags": ["denilson", "moraes", "denilson nogueira de moraes", "quimica inorganica experimental", "quimica organica experimental", "analise instrumental", "estagios em quimica", "quimica experimental", "k520183", "k520194", "k520204", "z141702", "a520105"],
+		"info": "Prof. Denilson Nogueira de Moraes: 1) Química Inorgânica Experimental (K520183, EQui-6UNA): Segunda-feira, 21:00-22:40, Bloco 6 - Sala 1.07. 2) Química Orgânica Experimental (K520194, EQui-8UNA): Sexta-feira, 19:00-22:40, Bloco 6 - Sala 1.09. 3) Análise Instrumental (K520204, EQui-10UNA): Quinta-feira, 19:00-20:40, Bloco 6 - Sala 1.10. 4) Orientação e Planejamento de Estágios em Química III (Z141702, BQui-8UNA): Quarta-feira, 18:10-19:00, Bloco 6 - Sala 2.03. 5) Química Experimental (A520105, FEAU-2UNB - Eng. Aeronáutica Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 1.02. 6) Química Experimental (A520105, FEAU-2UNC - Eng. Química Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 2.10."
+	},
+	{
+		"tags": ["andreza", "simioni", "andreza ribeiro simioni", "quimica inorganica", "quimica experimental", "z140846", "a520105", "bqui-4una", "feau-2una", "feau-2und"],
+		"info": "Profa. Andreza Ribeiro Simioni: 1) Química Inorgânica (Z140846, BQui-4UNA - Química Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 2.02. 2) Química Experimental (A520105, FEAU-2UNA - Eng. Química Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 1.01. 3) Química Experimental (A520105, FEAU-2UND - Eng. Aeronáutica Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 2.10."
+	},
+	{
+		"tags": ["erika", "peterson", "erika peterson goncalves", "sistemas estruturais", "teoria das estruturas", "quimica experimental", "k520276", "y520080", "a520105", "arq-6uma", "arq-6una", "eciv-6una", "feau-2umb"],
+		"info": "Profa. Erika Peterson Goncalves: 1) Sistemas Estruturais e Teoria das Estruturas (K520276, Arq-6UMA Matutino): Quarta-feira, 08:00-11:40, Bloco 10 - Sala 2.02. 2) Sistemas Estruturais e Teoria das Estruturas (K520276, Arq-6UNA Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 2.14. 3) Sistemas Estruturais e Teoria das Estruturas II (Y520080, ECiv-6UNA - Eng. Civil Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.05. 4) Química Experimental (A520105, FEAU-2UMB - Eng. Computação Matutino): Terça-feira, 08:00-11:40, Bloco 6 - Sala 2.10."
+	},
+	{
+		"tags": ["patricia", "marcondes", "patricia marcondes dos santos", "instalacoes eletricas prediais", "gestao e eficiencia energetica", "eficiencia energetica", "k520107", "k520259", "k520268", "eciv-8una", "eeletr-6una", "eeletr-8una"],
+		"info": "Profa. Patricia Marcondes dos Santos: 1) Instalações Elétricas Prediais (K520107, ECiv-8UNA - Eng. Civil Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 3.06. 2) Instalações Elétricas Prediais (K520259, EEletr-6UNA - Eng. Elétrica Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 0.02. 3) Gestão e Eficiência Energética (K520268, EEletr-8UNA - Eng. Elétrica Noturno): Terça-feira, 19:00-20:40, Bloco 6 - Sala 1.01."
+	},
+	{
+		"tags": ["julia", "wippich", "lencioni", "julia wippich lencioni", "construcao civil", "gerenciamento de obras", "ergonomia e seguranca do trabalho", "k520105", "k520243", "k520012", "arq-8uma", "eciv-8una", "arq-10uma", "arq-10una", "emec-8una"],
+		"info": "Profa. Julia Wippich Lencioni: 1) Construção Civil (K520105, Arq-8UMA Matutino): Segunda-feira, 08:00-11:40, Bloco 10 - Sala 2.09. 2) Construção Civil (K520105, ECiv-8UNA - Eng. Civil Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.06. 3) Gerenciamento de Obras (K520243, Arq-10UMA Matutino): Sexta-feira, 08:00-11:40, Bloco 10 - Sala 2.10. 4) Gerenciamento de Obras (K520243, Arq-10UNA Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 2.09. 5) Ergonomia e Segurança do Trabalho (K520012, EMec-8UNA - Eng. Mecânica Noturno): Terça-feira, 21:00-22:40, Bloco 6 - Sala 1.05."
+	},
+	{
+		"tags": ["heidi", "korzenowski", "heidi korzenowski", "dinamica dos fluidos computacional", "series e equacoes diferenciais", "equacoes diferenciais", "dinamica dos gases", "k520141", "k520032", "k520131", "eaero-8una", "feau-4uma", "feau-4una", "feau-4unb", "eaero-6una"],
+		"info": "Profa. Heidi Korzenowski: 1) Dinâmica dos Fluidos Computacional (K520141, EAero-8UNA - Eng. Aeronáutica Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 3.01. 2) Séries e Equações Diferenciais (K520032, FEAU-4UMA - Eng. Química Matutino): Segunda-feira, 08:00-11:40, Laboratório de Química Térreo - Bloco 10. 3) Séries e Equações Diferenciais (K520032, FEAU-4UNA - Eng. Computação Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 1.10. 4) Séries e Equações Diferenciais (K520032, FEAU-4UNB - Eng. Civil Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 1.11. 5) Dinâmica dos Gases (K520131, EAero-6UNA - Eng. Aeronáutica Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 2.18."
+	},
+	{
+		"tags": ["nara", "yokoyama", "nara oliveira yokoyama", "estruturas de concreto armado", "concreto armado", "principios de resistencia dos materiais", "k520092", "k520215", "eciv-6una", "arq-4uma", "arq-4una"],
+		"info": "Profa. Nara Oliveira Yokoyama: 1) Estruturas de Concreto Armado I (K520092, ECiv-6UNA - Eng. Civil Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 3.05. 2) Princípios de Resistência dos Materiais (K520215, Arq-4UMA Matutino): Terça-feira, 08:00-11:40, Bloco 10 - Sala 2.01. 3) Princípios de Resistência dos Materiais (K520215, Arq-4UNA Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 2.13."
+	},
+	{
+		"tags": ["helio", "esperidiao", "helio lourenco", "helio lourenco esperidiao ferreira", "programacao ii", "orientada a objetos", "poo", "projeto em sistemas embarcados", "projeto em engenharia da computacao", "k520283", "k520358", "k520357", "ecomp-6una", "ecomp-8una"],
+		"info": "Prof. Helio Lourenco Esperidiao Ferreira: 1) Programação II - Orientada a Objetos (K520283, EComp-6UNA - Eng. Computação Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 3.08. 2) Projeto em Engenharia da Computação I (K520357, EComp-8UNA - Eng. Computação Noturno): Sexta-feira, 19:00-20:40, Bloco 10 - Sala 3.10. 3) Projeto em Sistemas Embarcados (K520358, EComp-8UNA - Eng. Computação Noturno): Sexta-feira, 21:00-22:40, Bloco 10 - Sala 3.10."
+	},
+	{
+		"tags": ["edvaldo", "amorim", "edvaldo goncalves de amorim", "sensoriamento remoto", "geoprocessamento", "analise ambiental", "k520224", "k520242", "arq-6uma", "arq-6una", "arq-10una"],
+		"info": "Prof. Edvaldo Goncalves de Amorim: 1) Sensoriamento Remoto e Geoprocessamento (K520224, Arq-6UMA Matutino): Terça-feira, 10:00-11:40, Bloco 10 - Sala 2.02. 2) Sensoriamento Remoto e Geoprocessamento (K520224, Arq-6UNA Noturno): Terça-feira, 21:00-22:40, Bloco 10 - Sala 2.14. 3) Análise Ambiental (K520242, Arq-10UNA Noturno): Sexta-feira, 19:00-22:40, Bloco 6 - Sala 2.09."
+	},
+	{
+		"tags": ["priscila", "lemes", "priscila freitas lemes lourenco", "fenomenos de transporte", "k520035", "feau-4uma", "feau-4una", "feau-4unb"],
+		"info": "Profa. Priscila Freitas Lemes Lourenco: 1) Fenômenos de Transporte (K520035, FEAU-4UMA - Eng. Química Matutino): Quinta-feira, 08:00-11:40, Laboratório de Química Térreo - Bloco 10. 2) Fenômenos de Transporte (K520035, FEAU-4UNA - Eng. Computação Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 1.10. 3) Fenômenos de Transporte (K520035, FEAU-4UNB - Eng. Civil Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 1.11."
+	},
+	{
+		"tags": ["monica", "del core", "monica duarte vieira del core torres barbosa", "ergonomia", "instrumentacao industrial", "projeto ii", "fisico-quimica experimental ii", "k520012", "k520046", "k520201", "z141692", "eprod-8una", "equi-8una", "equi-10una", "bqui-8una"],
+		"info": "Profa. Monica Duarte Vieira Del Core Torres Barbosa: 1) Ergonomia e Segurança do Trabalho (K520012, EProd-8UNA - Eng. Produção Noturno): Sexta-feira, 19:00-20:40, Laboratório de Informática 1 - Bloco 10. 2) Instrumentação Industrial (K520046, EQui-8UNA - Eng. Química Noturno): Quarta-feira, 19:00-20:40, Bloco 6 - Sala 1.09. 3) Projeto II (K520201, EQui-10UNA): Sexta-feira, 21:00-22:40, Bloco 6 - Sala 1.10. 4) Físico-Química Experimental II (Z141692, BQui-8UNA - Química Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 2.03."
+	},
+	{
+		"tags": ["ana maria", "ana maria barbosa", "operacoes unitarias", "fisico-quimica ii", "calculo de reatores", "k520049", "k520187", "k520195", "z141727", "eprod-6una", "equi-6una", "equi-8una", "bqui-8una"],
+		"info": "Profa. Ana Maria Barbosa: 1) Operações Unitárias I (K520049, EProd-6UNA - Eng. Produção Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.04. 2) Físico-Química II (K520187, EQui-6UNA - Eng. Química Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 1.07. 3) Cálculo de Reatores I (K520195, EQui-8UNA): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 1.09. 4) Operações Unitárias da Indústria Química II (Z141727, BQui-8UNA): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 2.03."
+	},
+	{
+		"tags": ["maria angelica", "toniolo", "maria angelica toniolo", "extensao i", "planejamento urbano e regional vi", "ex520001", "k520234", "arq-2una", "feau-2uma", "arq-8uma", "arq-8una"],
+		"info": "Profa. Maria Angelica Toniolo: 1) Extensão I (Ex520001, FEAU-2UMA - Eng. Computação Matutino): Quinta-feira 13:20-15:00 e Sexta-feira 08:00-09:40, Auditório Jair - Bloco 10. 2) Extensão I (Ex520001, Arq-2UNA - Arquitetura Noturno): Quinta-feira 15:00-16:40 e Sexta-feira 19:00-20:40, Bloco 10 - Sala 2.12. 3) Planejamento Urbano e Regional VI (K520234, Arq-8UMA Matutino): Sexta-feira, 10:00-11:40, Bloco 10 - Sala 2.09. 4) Planejamento Urbano e Regional VI (K520234, Arq-8UNA Noturno): Sexta-feira, 21:00-22:40, Bloco 10 - Sala 2.15."
+	},
+	{
+		"tags": ["vinie", "pedra", "vinie pedra jorge", "cenografia", "projeto em arquitetura urbanismo e paisagismo iii", "historia da arquitetura e urbanismo ii", "k520348", "k520212", "k520218", "arq-6uma", "arq-6una", "arq-4uma", "arq-4una"],
+		"info": "Profa. Vinie Pedra Jorge: 1) Cenografia (K520348, Arq-6UMA Matutino): Quinta-feira, 10:00-11:40, Bloco 10 - Sala 2.02. 2) Cenografia (K520348, Arq-6UNA Noturno): Quinta-feira, 21:00-22:40, Bloco 10 - Sala 2.14. 3) Projeto em Arquitetura, Urbanismo e Paisagismo III (K520212, Arq-4UMA Matutino): Segunda-feira, 08:00-11:40, Bloco 10 - Sala 2.01. 4) Projeto em Arquitetura, Urbanismo e Paisagismo III (K520212, Arq-4UNA Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 2.13. 5) História da Arquitetura e Urbanismo II (K520218, Arq-4UMA Matutino): Sexta-feira, 10:00-11:40, Bloco 10 - Sala 2.01. 6) História da Arquitetura e Urbanismo II (K520218, Arq-4UNA Noturno): Quinta-feira, 19:00-20:40, Bloco 10 - Sala 2.13."
+	},
+	{
+		"tags": ["arian", "ojeda", "arian ojeda gonzalez", "eletricidade", "k520033", "feau-4uma", "feau-4una", "feau-4unb"],
+		"info": "Prof. Arian Ojeda Gonzalez: 1) Eletricidade (K520033, FEAU-4UMA - Eng. Química Matutino): Sexta-feira, 08:00-11:40, Laboratório de Química Térreo - Bloco 10. 2) Eletricidade (K520033, FEAU-4UNA - Eng. Computação Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 1.10. 3) Eletricidade (K520033, FEAU-4UNB - Eng. Civil Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 1.11."
+	},
+	{
+		"tags": ["ana frieda", "nossack", "ana frieda avila nossack", "projeto em arquitetura urbanismo e paisagismo v", "k520222", "arq-6uma", "arq-6una"],
+		"info": "Profa. Ana Frieda Avila Nossack: 1) Projeto em Arquitetura, Urbanismo e Paisagismo V (K520222, Arq-6UMA Matutino): Segunda-feira, 08:00-11:40, Bloco 10 - Sala 2.02. 2) Projeto em Arquitetura, Urbanismo e Paisagismo V (K520222, Arq-6UNA Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 2.14."
+	},
+	{
+		"tags": ["rita", "cassya", "rita de cassya", "rita de cassya almeida sousa", "conforto ambiental", "normas e legislacao", "topicos de arquitetura e urbanismo i", "k520232", "k520240", "k520340", "arq-8uma", "arq-8una", "arq-10uma", "arq-10una"],
+		"info": "Profa. Rita de Cassya Almeida Sousa: 1) Conforto Ambiental (K520232, Arq-8UMA Matutino): Quinta-feira, 08:00-11:40, Bloco 10 - Sala 2.09. 2) Conforto Ambiental (K520232, Arq-8UNA Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 2.15. 3) Normas e Legislação de Arquitetura e Urbanismo (K520240, Arq-10UMA Matutino): Segunda-feira, 08:00-11:40, Bloco 10 - Sala 2.10. 4) Normas e Legislação de Arquitetura e Urbanismo (K520240, Arq-10UNA Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 2.09. 5) Tópicos de Arquitetura e Urbanismo I (K520340, Arq-10UNA Noturno): Segunda-feira, 21:00-22:40, Bloco 6 - Sala 2.09."
+	},
+	{
+		"tags": ["maiara", "castilho", "maiara lima castilho", "vetores", "geometria analitica", "vetores e geometria analitica", "vga", "a520143", "feau-2una", "feau-2unb", "feau-2uma"],
+		"info": "Profa. Maiara Lima Castilho: 1) Vetores e Geometria Analítica (A520143, FEAU-2UMA - Eng. Computação Matutino): Sexta-feira, 10:00-11:40, Auditório Jair - Bloco 10. 2) Vetores e Geometria Analítica (A520143, FEAU-2UNA - Eng. Química Noturno): Sexta-feira, 19:00-20:40, Bloco 10 - Sala 1.01. 3) Vetores e Geometria Analítica (A520143, FEAU-2UNB - Eng. Aeronáutica Noturno): Sexta-feira, 21:00-22:40, Bloco 10 - Sala 1.02."
+	},
+	{
+		"tags": ["lahoz", "carlos lahoz", "carlos henrique netto lahoz", "engenharia de software", "sistemas operacionais", "algoritmos e programacao", "k520290", "a520144", "a520145", "ecomp-8una", "ccomp-2uma", "ccomp-2una", "feau-2umb"],
+		"info": "Prof. Carlos Henrique Netto Lahoz: 1) Engenharia de Software (K520290, EComp-8UNA - Eng. Computação Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.10. 2) Sistemas Operacionais (A520144, CComp-2UMA - Ciência da Computação Matutino): Terça-feira e Quinta-feira, 10:00-11:40, Bloco 10 - Sala 2.16. 3) Sistemas Operacionais (A520144, CComp-2UNA - Ciência da Computação Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 2.16. 4) Algoritmos e Programação (A520145, FEAU-2UMB - Eng. Computação Matutino): Quarta-feira, 08:00-11:40, Bloco 10 - Sala 3.10."
+	},
+{
+		"tags": ["virginia", "klausner", "virginia klausner de oliveira", "dispositivos e circuitos eletronicos", "simulacao de sistemas", "automacao industrial", "sistemas de comunicacoes", "k520157", "k520161", "k520175", "k520258", "eeletr-6una", "emec-6una", "ecomp-10una", "eeletr-8una"],
+		"info": "Profa. Virginia Klausner de Oliveira: 1) Dispositivos e Circuitos Eletrônicos (K520157, EEletr-6UNA - Eng. Elétrica Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 0.02. 2) Análise, Modelagem e Simulação de Sistemas (K520161, EMec-6UNA - Eng. Mecânica Noturno): Terça-feira, 19:00-20:40, Bloco 6 - Sala 1.04. 3) Automação Industrial (K520175, EComp-10UNA - Eng. Computação Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 3.11. 4) Sistemas de Comunicações Analógicos e Digitais (K520258, EEletr-8UNA - Eng. Elétrica Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 1.01."
+	},
+	{
+		"tags": ["alexandre tardelli", "tardelli", "conversao de energia", "maquinas eletricas", "fontes alternativas", "energias renovaveis", "eletronica industrial", "eletronica de potencia", "acionamentos eletricos", "k520159", "k520262", "k520273", "k520318", "eeletr-8una", "eeletr-6una", "eeletr-10una"],
+		"info": "Prof. Alexandre Tardelli: 1) Conversão de Energia e Máquinas Elétricas (K520159, EEletr-8UNA - Eng. Elétrica Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 1.01. 2) Fontes Alternativas e Renováveis de Energia (K520262, EEletr-6UNA - Eng. Elétrica Noturno): Sexta-feira, 19:00-22:40, Bloco 6 - Sala 0.02. 3) Eletrônica Industrial e de Potência (K520273, EEletr-8UNA - Eng. Elétrica Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.01. 4) Acionamentos Elétricos (K520318, EEletr-10UNA - Eng. Elétrica Noturno): Terça-feira, 19:00-20:40, Bloco 6 - Sala 1.02."
+	},
+	{
+		"tags": ["fernanda", "arguello", "fernanda viana paiva arguello", "topografia", "geodesia", "topografia e geodesia", "saneamento basico", "k520088", "k520093", "k520221", "eciv-6una", "arq-6uma", "arq-6una"],
+		"info": "Profa. Fernanda Viana Paiva Arguello: 1) Topografia e Geodésia (K520088, ECiv-6UNA - Eng. Civil Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.05. 2) Saneamento Básico I (K520093, ECiv-6UNA - Eng. Civil Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 3.05. 3) Topografia e Geodésia (K520221, Arq-6UMA - Arquitetura Matutino): Sexta-feira, 08:00-11:40, Bloco 10 - Sala 2.02. 4) Topografia e Geodésia (K520221, Arq-6UNA - Arquitetura Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 2.14."
+	},
+	{
+		"tags": ["marco custodio", "custodio", "marco antonio custodio", "estrategia e marketing", "pesquisa operacional", "gestao de projetos e qualidade", "gestao da inovacao tecnologica", "k520048", "k520058", "k520069", "k520070", "eprod-6una", "eprod-8una", "eprod-10una"],
+		"info": "Prof. Marco Antonio Custodio: 1) Projeto de Engenharia de Produção I: Estratégia e Marketing (K520048, EProd-6UNA - Eng. Produção Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 3.04. 2) Pesquisa Operacional (K520058, EProd-8UNA - Eng. Produção Noturno): Quinta-feira, 19:00-22:40, Laboratório de Informática I - Bloco 10. 3) Gestão de Projetos e Qualidade (K520069, EProd-10UNA - Eng. Produção Noturno): Sexta-feira, 19:00-22:40, Bloco 6 - Sala 0.01. 4) Gestão da Inovação Tecnológica (K520070, EProd-10UNA - Eng. Produção Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 0.01."
+	},
+	{
+		"tags": ["wagner almeida", "wagner de almeida da silva", "gestao financeira", "excelencia operacional", "lean sigma", "elementos de maquina ii", "k520044", "k520359", "k520166", "eprod-6una", "eprod-10una", "emec-8una"],
+		"info": "Prof. Wagner de Almeida da Silva: 1) Gestão Financeira (K520044, EProd-6UNA - Eng. Produção Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 3.04. 2) Excelência Operacional Lean Sigma (K520359, EProd-10UNA - Eng. Produção Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 0.01. 3) Elementos de Máquina II (K520166, EMec-8UNA - Eng. Mecânica Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.05."
+	},
+	{
+		"tags": ["fernando ortega", "ortega", "fernando dos santos ortega", "maquinas de fluxos", "maquinas termicas", "fisica geral i", "k520170", "k520172", "a520174", "emec-8una", "bqui-2una"],
+		"info": "Prof. Fernando dos Santos Ortega: 1) Máquinas de Fluxos (K520170, EMec-8UNA - Eng. Mecânica Noturno): Sexta-feira, 19:00-22:40, Bloco 6 - Sala 1.05. 2) Máquinas Térmicas (K520172, EMec-8UNA - Eng. Mecânica Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 1.05. 3) Física Geral I (A520174, BQui-2UNA - Química Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 2.01."
+	},
+	{
+		"tags": ["pedro luiz", "golobovante", "loureiro", "pedro luiz golobovante loureiro", "processos de fabricacao ii", "elementos finitos", "projeto em engenharia aeronautica", "seguranca de voo", "homologacao de aeronaves", "k520057", "k520134", "k520143", "k520144", "k520152", "eprod-8una", "eaero-8una", "eaero-10una"],
+		"info": "Prof. Pedro Luiz Golobovante Loureiro: 1) Processos de Fabricação II (K520057, EProd-8UNA - Eng. Produção Noturno): Segunda-feira, 19:00-22:40, Laboratório de Informática 1 - Bloco 10. 2) Introdução a Elementos Finitos (K520134, EAero-8UNA - Eng. Aeronáutica Noturno): Quarta-feira, 21:00-22:40, Bloco 10 - Sala 3.01. 3) Segurança de Voo (K520144, EAero-8UNA): Terça-feira, 19:00-20:40, Bloco 10 - Sala 3.01. 4) Projeto em Engenharia Aeronáutica e Espaço III (K520143, EAero-8UNA): Terça-feira, 21:00-22:40, Bloco 10 - Sala 3.01. 5) Homologação de Aeronaves (K520152, EAero-10UNA): Quarta-feira, 19:00-20:40, Bloco 10 - Sala 3.02."
+	},
+	{
+		"tags": ["miranda", "nedel", "miranda zamberlan nedel", "teoria da arquitetura e urbanismo ii", "projeto em arquitetura urbanismo e paisagismo i", "k520274", "a520011", "arq-4uma", "arq-4una", "arq-2uma", "arq-2una"],
+		"info": "Profa. Miranda Zamberlan Nedel: 1) Teoria da Arquitetura e Urbanismo II (K520274, Arq-4UMA Matutino): Quinta-feira, 10:00-11:40, Bloco 10 - Sala 2.01. 2) Teoria da Arquitetura e Urbanismo II (K520274, Arq-4UNA Noturno): Sexta-feira, 19:00-20:40, Bloco 10 - Sala 2.13. 3) Projeto em Arquitetura, Urbanismo e Paisagismo I (A520011, Arq-2UMA Matutino): Quarta-feira, 08:00-11:40, Bloco 10 - Sala 1.12. 4) Projeto em Arquitetura, Urbanismo e Paisagismo I (A520011, Arq-2UNA Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 2.12."
+	},
+	{
+		"tags": ["marcello", "contini", "marcello scarpel contini", "sistemas de informacao", "modelagem e simulacao de sistemas da producao", "sistemas embarcados e iot", "k520047", "k520071", "k520260", "eprod-6una", "eprod-10una", "eeletr-8una"],
+		"info": "Prof. Marcello Scarpel Contini: 1) Sistemas de Informação (K520047, EProd-6UNA - Eng. Produção Noturno): Segunda-feira, 19:00-20:40, Bloco 10 - Sala 3.04. 2) Modelagem e Simulação de Sistemas da Produção (K520071, EProd-10UNA - Eng. Produção Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 0.01. 3) Sistemas Embarcados e IoT (K520260, EEletr-8UNA - Eng. Elétrica Noturno): Terça-feira, 21:00-22:40, Bloco 6 - Sala 1.01."
+	},
+	{
+		"tags": ["everaldo", "everaldo cristiano da silva", "geometria descritiva", "desenho arquitetonico", "a520013", "a520015", "arq-2uma", "arq-2una"],
+		"info": "Prof. Everaldo Cristiano da Silva: 1) Geometria Descritiva (A520013, Arq-2UMA Matutino): Sexta-feira, 10:00-11:40, Bloco 10 - Sala 1.12. 2) Geometria Descritiva (A520013, Arq-2UNA Noturno): Sexta-feira, 21:00-22:40, Bloco 10 - Sala 2.12. 3) Desenho Arquitetônico (A520015, Arq-2UMA Matutino): Terça-feira, 08:00-11:40, Bloco 10 - Sala 1.12. 4) Desenho Arquitetônico (A520015, Arq-2UNA Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 2.12."
+	},
+	{
+		"tags": ["felipe jean", "felipe jean da costa", "aerodinamica ii", "veiculos lancadores", "projeto de maquinas", "projeto em engenharia mecanica iii", "k520130", "k520151", "k520176", "eaero-6una", "eaero-10una", "emec-10una"],
+		"info": "Prof. Felipe Jean da Costa: 1) Aerodinâmica II (K520130, EAero-6UNA - Eng. Aeronáutica Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 2.18. 2) Veículos Lançadores (K520151, EAero-10UNA - Eng. Aeronáutica Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.02. 3) Projeto em Engenharia Mecânica III: Projeto de Máquinas (K520176, EMec-10UNA - Eng. Mecânica Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.06."
+	},
+	{
+		"tags": ["aline", "aline cristina", "aline cristina gomes da costa", "extensao i", "metodologia cientifica", "metodologia cientifica e tecnologica", "ex520001", "a520014", "feau-2unb", "feau-2una", "arq-2uma", "arq-2una"],
+		"info": "Profa. Aline Cristina Gomes da Costa: 1) Extensão I (Ex520001, FEAU-2UNB - Eng. Aeronáutica Noturno): Sexta-feira, 12:30-20:40, Bloco 10 - Sala 1.02. 2) Extensão I (Ex520001, FEAU-2UNA - Eng. Química Noturno): Sexta-feira, 15:00-22:40, Bloco 10 - Sala 1.01. 3) Metodologia Científica e Tecnológica (A520014, Arq-2UMA Matutino): Quinta-feira, 08:00-11:40, Bloco 10 - Sala 1.12. 4) Metodologia Científica e Tecnológica (A520014, Arq-2UNA Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 2.12."
+	},
+	{
+		"tags": ["wallyson", "wallyson ribeiro dos santos", "processos da industria quimica", "tratamento de residuos", "sistemas de tratamento de residuos", "transferencia de calor", "k520056", "k520203", "k520319", "equi-8una", "equi-10una", "equi-6una"],
+		"info": "Prof. Wallyson Ribeiro dos Santos: 1) Processos da Indústria Química I (K520056, EQui-8UNA - Eng. Química Noturno): Terça-feira, 19:00-22:40, Bloco 6 - Sala 1.09. 2) Sistemas de Tratamento de Resíduos (K520203, EQui-10UNA - Eng. Química Noturno): Quarta-feira, 19:00-22:40, Bloco 6 - Sala 1.10. 3) Transferência de Calor (K520319, EQui-6UNA - Eng. Química Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 1.07."
+	},
+	{
+		"tags": ["hassmann", "carlos hassmann", "carlos henrique gustavo hassmann", "instrumentacao industrial", "projeto em engenharia aeronautica e espaco i", "fabricacao assistida por computador", "cam", "k520046", "k520132", "k520168", "eprod-6una", "eaero-6una", "emec-8una"],
+		"info": "Prof. Carlos Henrique Gustavo Hassmann: 1) Instrumentação Industrial (K520046, EProd-6UNA - Eng. Produção Noturno): Segunda-feira, 21:00-22:40, Bloco 10 - Sala 3.04. 2) Projeto em Engenharia Aeronáutica e Espaço I (K520132, EAero-6UNA - Eng. Aeronáutica Noturno): Segunda-feira, 19:00-20:40, Bloco 10 - Sala 2.18. 3) Projeto em Engenharia Mecânica II: Fabricação Assistida por Computador (K520168, EMec-8UNA - Eng. Mecânica Noturno): Terça-feira, 19:00-20:40, Bloco 6 - Sala 1.05."
+	},
+	{
+		"tags": ["lucio", "veraldo", "lucio garcia veraldo junior", "gestao da producao e operacoes", "gestao de negocios e empreendedorismo", "empreendedorismo", "k520043", "k520393", "eprod-6una", "eprod-10una"],
+		"info": "Prof. Lucio Garcia Veraldo Junior: 1) Gestão da Produção e Operações I (K520043, EProd-6UNA - Eng. Produção Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 3.04. 2) Gestão de Negócios e Empreendedorismo (K520393, EProd-10UNA - Eng. Produção Noturno): Quinta-feira, 19:00-22:40, Bloco 6 - Sala 0.01."
+	},
+	{
+		"tags": ["isabel", "isabel lima", "isabel de jesus lima", "sistemas roboticos", "robotica", "algoritmos e programacao", "fisica experimental i", "k520174", "a520145", "a520104", "ecomp-10una", "feau-2uma", "feau-2umb", "feau-2unc"],
+		"info": "Profa. Isabel de Jesus Lima: 1) Sistemas Robóticos (K520174, EComp-10UNA - Eng. Computação Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.11. 2) Algoritmos e Programação (A520145, FEAU-2UMA - Eng. Computação Matutino): Quarta-feira, 08:00-11:40, Auditório Jair - Bloco 10. 3) Física Experimental I (A520104, FEAU-2UMB - Eng. Computação Matutino): Quinta-feira, 10:00-11:40, Bloco 10 - Sala 3.10. 4) Física Experimental I (A520104, FEAU-2UNC - Eng. Química Noturno): Quinta-feira, 19:00-20:40, Bloco 6 - Sala 2.10."
+	},
+	{
+		"tags": ["caio", "mascarenhas", "caio mascarenhas raul", "mecanica dos solos ii", "geotecnia", "pavimentacao", "k520100", "k520108", "k520116", "eciv-8una", "eciv-10una"],
+		"info": "Prof. Caio Mascarenhas Raul: 1) Mecânica dos Solos II (K520100, ECiv-8UNA - Eng. Civil Noturno): Quinta-feira, 19:00-22:40, Bloco 10 - Sala 3.06. 2) Geotecnia (K520108, ECiv-8UNA - Eng. Civil Noturno): Sexta-feira, 19:00-22:40, Bloco 10 - Sala 3.06. 3) Pavimentação (K520116, ECiv-10UNA - Eng. Civil Noturno): Quarta-feira, 19:00-22:40, Bloco 10 - Sala 3.07."
+	},
+	{
+		"tags": ["luca", "lorenzini", "luca gomes pereira de vilhena lorenzini", "gerenciamento na construcao civil", "infraestrutura hidroviaria e aeroportuaria", "alvenaria estrutural", "construcao na industria 4.0", "k520117", "k520118", "y520526", "y520527", "eciv-10una"],
+		"info": "Prof. Luca Gomes Pereira de Vilhena Lorenzini: 1) Gerenciamento na Construção Civil (K520117, ECiv-10UNA - Eng. Civil Noturno): Segunda-feira, 19:00-20:40, Bloco 10 - Sala 3.07. 2) A Construção na Indústria 4.0 (Y520527, ECiv-10UNA): Segunda-feira, 21:00-22:40, Bloco 10 - Sala 3.07. 3) Infraestrutura Hidroviária e Aeroportuária (K520118, ECiv-10UNA): Terça-feira, 19:00-20:40, Bloco 10 - Sala 3.07. 4) Tópicos de Alvenaria Estrutural (Y520526, ECiv-10UNA): Terça-feira, 21:00-22:40, Bloco 10 - Sala 3.07."
+	},
+	{
+		"tags": ["mario sergio", "scalambrino", "mario sergio soleo scalambrino", "projeto em arquitetura urbanismo e paisagismo vii", "atelie de arquitetura e urbanismo ii", "escritorio modelo", "k520233", "k520277", "arq-8uma", "arq-8una"],
+		"info": "Prof. Mario Sergio Soleo Scalambrino: 1) Ateliê de Arquitetura e Urbanismo II - Escritório Modelo (K520277, Arq-8UMA Matutino): Quarta-feira, 08:00-09:40, Bloco 10 - Sala 2.09. 2) Projeto em Arquitetura, Urbanismo e Paisagismo VII (K520233, Arq-8UMA Matutino): Quarta-feira, 10:00-11:40, Bloco 10 - Sala 2.09. 3) Ateliê de Arquitetura e Urbanismo II - Escritório Modelo (K520277, Arq-8UNA Noturno): Quarta-feira, 19:00-20:40, Bloco 10 - Sala 2.15. 4) Projeto em Arquitetura, Urbanismo e Paisagismo VII (K520233, Arq-8UNA Noturno): Quarta-feira, 21:00-22:40, Bloco 10 - Sala 2.15."
+	},
+	{
+		"tags": ["andre olimpio", "olimpio", "algoritmos e programacao", "interface humano maquina", "ihm", "ciencia de dados", "banco de dados ii", "a520145", "a520146", "a520153", "k520281", "feau-2unb", "ccomp-4una", "ecomp-6una"],
+		"info": "Prof. Andre Olimpio: 1) Banco de Dados II (K520281, EComp-6UNA - Eng. Computação Noturno): Segunda-feira, 19:00-22:40, Bloco 10 - Sala 3.08. 2) Algoritmos e Programação (A520145, FEAU-2UNB - Eng. Aeronáutica Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 1.02. 3) Interface Humano Máquina (A520146, CComp-4UNA - Ciência da Computação Noturno): Quarta-feira, 19:00-20:40, Bloco 10 - Sala 2.17. 4) Ciência de Dados (A520153, CComp-4UNA - Ciência da Computação Noturno): Quarta-feira, 21:00-22:40, Bloco 10 - Sala 2.17."
+	},
+	{
+		"tags": ["milton", "beltrame", "milton beltrame junior", "quimica organica ii", "z140849", "bqui-4una"],
+		"info": "Prof. Milton Beltrame Junior: Química Orgânica II (Z140849, BQui-4UNA - Química Noturno): Segunda-feira, 19:00-22:40, Bloco 6 - Sala 2.02."
+	},
+	{
+		"tags": ["ivone", "ivone regina", "ivone regina de oliveira", "quimica organica i", "quimica geral ii", "k520184", "a520175", "equi-6una", "bqui-2una"],
+		"info": "Profa. Ivone Regina de Oliveira: 1) Química Orgânica I (K520184, EQui-6UNA - Eng. Química Noturno): Segunda-feira, 19:00-20:40, Bloco 6 - Sala 1.07. 2) Química Geral II (A520175, BQui-2UNA - Química Noturno): Quinta-feira, 21:00-22:40, Bloco 6 - Sala 2.01."
+	},
+	{
+		"tags": ["gabriel", "doria", "xavier", "gabriel doria xavier", "qualidade na industria aeroespacial", "manutencao de aeronaves", "engenharia de interiores", "projeto conceitual de engenharia de interiores", "k520133", "k520150", "k520153", "eaero-6una", "eaero-10una"],
+		"info": "Prof. Gabriel Doria Xavier: 1) Projeto Conceitual de Engenharia de Interiores (K520153, EAero-10UNA - Eng. Aeronáutica Noturno): Segunda-feira, 19:00-20:40, Bloco 10 - Sala 3.02. 2) Qualidade na Indústria Aeroespacial (K520133, EAero-6UNA - Eng. Aeronáutica Noturno): Segunda-feira, 21:00-22:40, Bloco 10 - Sala 2.18. 3) Manutenção de Aeronaves (K520150, EAero-10UNA - Eng. Aeronáutica Noturno): Terça-feira, 19:00-22:40, Bloco 10 - Sala 3.02."
+	},
+	{
+		"tags": ["papp", "marco papp", "marco antonio papp", "sociologia", "etica", "sociologia e etica do trabalho", "k520038", "eprod-8una"],
+		"info": "Prof. Marco Antonio Papp: Sociologia e Ética do Trabalho (K520038, EProd-8UNA - Eng. Produção Noturno): Sexta-feira, 21:00-22:40, Laboratório de Informática 1 - Bloco 10."
+	}
+]

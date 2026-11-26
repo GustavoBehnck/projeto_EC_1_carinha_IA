@@ -13,12 +13,142 @@ var elevenlabs_api_key: String = ""
 var voice_id: String = "pFZP5JQG7iQjIQuC4Bku"
 var conversation_history: Array = []
 
+var _aulas_db: Array = [] # Cada item terá {"tags": Array[String], "info": String}
+
 func _init() -> void:
 	load_tokens()
 	conversation_history.append({
 		"role": "system",
 		"content": "Você é o Assistente Virtual Acadêmico da Univap. Responda de forma clara, curta e natural. OBRIGATÓRIO: Sempre antes de cada frase ou mudança de tom, insira uma tag de humor entre colchetes: [FELIZ], [MUITO_FELIZ], [PISCANDO], [RINDO], [BRINCALHAO], [PENSATIVO], [CONFUSO], [TRISTE], [RAIVA], [SURPRESO], [EMPOLGADO], [ORGULHOSO] ou [TIMIDO]. Exemplo: [FELIZ] Olá! [PENSATIVO] Deixe-me ver o horário... [EMPOLGADO] Encontrei!"
 	})
+
+const _MAPA_ACENTOS := {
+	"á": "a", "à": "a", "â": "a", "ã": "a", "ä": "a",
+	"é": "e", "è": "e", "ê": "e", "ë": "e",
+	"í": "i", "ì": "i", "î": "i", "ï": "i",
+	"ó": "o", "ò": "o", "ô": "o", "õ": "o", "ö": "o",
+	"ú": "u", "ù": "u", "û": "u", "ü": "u",
+	"ç": "c", "ñ": "n"
+}
+
+func _normalizar_texto(texto: String) -> String:
+	var s := texto.to_lower()
+	var out := ""
+	for i in range(s.length()):
+		var ch := s.substr(i, 1)
+		out += _MAPA_ACENTOS.get(ch, ch)
+	return out
+
+func _extrair_tokens(texto_norm: String) -> Array[String]:
+	var stopwords := {
+		"de": true, "da": true, "do": true, "das": true, "dos": true,
+		"em": true, "no": true, "na": true, "nos": true, "nas": true,
+		"o": true, "a": true, "os": true, "as": true, "um": true, "uma": true,
+		"e": true, "ou": true, "para": true, "por": true, "com": true,
+		"qual": true, "quais": true, "onde": true, "quando": true, "que": true
+	}
+	var partes := texto_norm.split(" ", false)
+	var tokens: Array[String] = []
+	for p in partes:
+		var limpa := p.strip_edges()
+		# Remove pontuação simples nas pontas
+		limpa = limpa.trim_prefix("?").trim_prefix("¿").trim_prefix(",").trim_prefix(".")
+		limpa = limpa.trim_suffix("?").trim_suffix("!").trim_suffix(",").trim_suffix(".")
+		if limpa.length() >= 2 and not stopwords.has(limpa):
+			tokens.append(limpa)
+	return tokens
+
+func carregar_aulas_json(caminho: String = "res://dados_univap.json") -> void:
+	_aulas_db.clear()
+	if not FileAccess.file_exists(caminho):
+		push_warning("Arquivo de aulas não encontrado: " + caminho)
+		return
+
+	var file := FileAccess.open(caminho, FileAccess.READ)
+	if not file:
+		push_warning("Falha ao abrir arquivo de aulas: " + caminho)
+		return
+
+	var parsed = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(parsed) != TYPE_ARRAY:
+		push_warning("JSON de aulas inválido: esperado um Array na raiz.")
+		return
+
+	for item in parsed:
+		if typeof(item) != TYPE_DICTIONARY or not item.has("info"):
+			continue
+
+		var tags_normalizadas: Array[String] = []
+		if item.has("tags") and typeof(item["tags"]) == TYPE_ARRAY:
+			for t in item["tags"]:
+				var limpa := _normalizar_texto(str(t))
+				if not limpa.is_empty():
+					tags_normalizadas.append(limpa)
+
+		_aulas_db.append({
+			"tags": tags_normalizadas,
+			"info": str(item["info"]).strip_edges()
+		})
+
+func _montar_contexto_aulas(pergunta: String) -> String:
+	var relevantes := buscar_aulas_relevantes(pergunta, 3)
+	if relevantes.is_empty():
+		return ""
+
+	var linhas: Array[String] = []
+	for info in relevantes:
+		linhas.append("- " + info)
+
+	return "\n\n[DADOS DAS AULAS RELEVANTES]\n" + "\n".join(linhas)
+
+func buscar_aulas_relevantes(pergunta: String, limite: int = 3) -> Array[String]:
+	var pergunta_norm := _normalizar_texto(pergunta)
+	if pergunta_norm.is_empty() or _aulas_db.is_empty():
+		return []
+
+	var tokens := _extrair_tokens(pergunta_norm)
+	var candidatos: Array = [] # {"score": int, "info": String}
+
+	for registro in _aulas_db:
+		var score := 0
+		var tags: Array = registro["tags"]
+		var info_norm := _normalizar_texto(registro["info"])
+
+		for tag in tags:
+			# 1. Tag completa aparece na pergunta (ex: "iot", "wagner clementino", "k520270")
+			if pergunta_norm.contains(tag):
+				score += 10 if tag.length() >= 4 else 6
+
+			# 2. Comparação por palavras/tokens da pergunta
+			for token in tokens:
+				if tag == token:
+					score += 5
+				elif tag.contains(token) or token.contains(tag):
+					# Evita falsos positivos em siglas curtas como "iot" ou "liu"
+					if token.length() >= 4 and tag.length() >= 4:
+						score += 3
+
+		# 3. Fallback leve no texto de 'info' caso o termo não esteja nas tags
+		for token in tokens:
+			if token.length() >= 4 and info_norm.contains(token):
+				score += 1
+
+		if score > 0:
+			candidatos.append({
+				"score": score,
+				"info": registro["info"]
+			})
+
+	candidatos.sort_custom(func(a, b): return a["score"] > b["score"])
+
+	var resultado: Array[String] = []
+	var qtd := mini(limite, candidatos.size())
+	for i in range(qtd):
+		resultado.append(candidatos[i]["info"])
+
+	return resultado
 
 func load_tokens() -> void:
 	for path in ["res://groq_token.txt", "res://.groq_token"]:
@@ -100,44 +230,53 @@ func ask_groq(prompt: String) -> String:
 	if api_key.is_empty():
 		return "Erro: Chave da API Groq não configurada."
 
+	# Garante que o prompt de sistema exista mesmo se o histórico foi alterado externamente
+	if conversation_history.is_empty() or conversation_history[0].get("role", "") != "system":
+		_reset_system_prompt()
+
+	var contexto_aulas := _montar_contexto_aulas(prompt)
+	var mensagem_usuario := "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt
+	if not contexto_aulas.is_empty():
+		mensagem_usuario += contexto_aulas
+
 	conversation_history.append({
 		"role": "user",
-		"content": "Responda usando tags de humor [FELIZ], [PENSATIVO], etc. antes de cada frase:\n" + prompt
+		"content": mensagem_usuario
 	})
 
 	var http_request = HTTPRequest.new()
 	http_request.timeout = 15.0
 	add_child(http_request)
-	
+
 	var headers = [
 		"Content-Type: application/json",
 		"Authorization: Bearer " + api_key
 	]
-	
+
 	var payload = {
 		"model": "openai/gpt-oss-20b",
 		"messages": conversation_history,
 		"temperature": 1.0,
 		"max_completion_tokens": 1024
 	}
-	
+
 	var body = JSON.stringify(payload)
 	var error = http_request.request(CHAT_URL, headers, HTTPClient.METHOD_POST, body)
-	
+
 	if error != OK:
 		http_request.queue_free()
 		return "Erro ao iniciar requisição HTTP."
-		
+
 	var result = await http_request.request_completed
 	http_request.queue_free()
-	
+
 	if result[1] == 200:
 		var json = JSON.parse_string(result[3].get_string_from_utf8())
 		if json and json.has("choices"):
 			var resposta_ia = json["choices"][0]["message"]["content"]
 			conversation_history.append({"role": "assistant", "content": resposta_ia})
 			return resposta_ia
-			
+
 	return "Erro " + str(result[1]) + ": " + result[3].get_string_from_utf8()
 
 func text_to_speech_elevenlabs(text: String, stability: float = 0.45, style: float = 0.35) -> AudioStreamMP3:
