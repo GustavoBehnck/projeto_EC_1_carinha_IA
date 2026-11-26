@@ -21,6 +21,7 @@ var ultima_altura_teclado: int = -1
 var ultimo_tamanho_tela: Vector2 = Vector2.ZERO
 
 var botao_historico: Button
+var btn_limpar_historico: Button
 var painel_historico: Panel
 var texto_historico: RichTextLabel
 var lista_historico: Array[String] = []
@@ -214,6 +215,17 @@ func configurar_interface_historico() -> void:
 	titulo.position = Vector2(25, 18)
 	titulo.add_theme_font_size_override("font_size", 26)
 	painel_historico.add_child(titulo)
+
+	btn_limpar_historico = Button.new()
+	btn_limpar_historico.name = "BtnLimparHistorico"
+	btn_limpar_historico.text = "🧹 Limpar"
+	btn_limpar_historico.size = Vector2(140, 48)
+	btn_limpar_historico.add_theme_font_size_override("font_size", 20)
+	btn_limpar_historico.add_theme_stylebox_override("normal", estilo_botao_topo)
+	btn_limpar_historico.add_theme_stylebox_override("hover", estilo_botao_topo)
+	btn_limpar_historico.add_theme_stylebox_override("pressed", estilo_botao_topo)
+	btn_limpar_historico.pressed.connect(_on_limpar_historico_pressed)
+	painel_historico.add_child(btn_limpar_historico)
 	
 	var btn_fechar = Button.new()
 	btn_fechar.name = "BtnFechar"
@@ -234,6 +246,13 @@ func configurar_interface_historico() -> void:
 	texto_historico.add_theme_font_size_override("bold_font_size", 24)
 	texto_historico.text = "Nenhuma interação registrada ainda."
 	painel_historico.add_child(texto_historico)
+
+func _on_limpar_historico_pressed() -> void:
+	if groq and groq.has_method("clear_history"):
+		groq.clear_history()
+	lista_historico.clear()
+	if texto_historico:
+		texto_historico.text = "Nenhuma interação registrada ainda."
 
 func _on_botao_historico_pressed() -> void:
 	painel_historico.visible = not painel_historico.visible
@@ -448,12 +467,27 @@ func atualizar_layout_acessibilidade() -> void:
 	if painel_historico:
 		painel_historico.position = Vector2(25.0, 90.0)
 		painel_historico.size = Vector2(largura_tela - 50.0, altura_tela - 130.0)
+		
+		var margem_dir := 20.0
+		var espaco_entre_botoes := 10.0
+		var y_topo := 14.0
+		
 		var btn_fechar = painel_historico.get_node_or_null("BtnFechar")
+		var x_fechar := painel_historico.size.x - 130.0 - margem_dir
 		if btn_fechar:
-			btn_fechar.position = Vector2(painel_historico.size.x - 150.0, 14.0)
+			btn_fechar.size = Vector2(130.0, 48.0)
+			x_fechar = painel_historico.size.x - btn_fechar.size.x - margem_dir
+			btn_fechar.position = Vector2(x_fechar, y_topo)
+			
+		if btn_limpar_historico:
+			btn_limpar_historico.size = Vector2(140.0, 48.0)
+			var x_limpar := x_fechar - btn_limpar_historico.size.x - espaco_entre_botoes
+			btn_limpar_historico.position = Vector2(maxf(20.0, x_limpar), y_topo)
+			
 		if texto_historico:
 			texto_historico.position = Vector2(25.0, 75.0)
 			texto_historico.size = Vector2(painel_historico.size.x - 50.0, painel_historico.size.y - 95.0)
+			
 		if painel_historico.visible:
 			painel_historico.move_to_front()
 	
